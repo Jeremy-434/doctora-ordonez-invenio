@@ -11,14 +11,14 @@ interface Props {
 const { stats } = Astro.props;
 ---
 
-<section class="bg-primary text-white py-16 md:py-24">
+<section class="py-16 md:py-24 text-text border-y border-border" style="background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-raised) 100%);">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
       {
         stats.map((stat) => (
           <div class="text-center" data-animate="stat">
             <div class="text-3xl md:text-5xl font-bold mb-2" data-stat-value>{stat.value}</div>
-            <p class="text-white/80 text-sm md:text-base">{stat.label}</p>
+            <p class="text-text-muted text-sm md:text-base">{stat.label}</p>
           </div>
         ))
       }

@@ -11,18 +11,18 @@ interface Props {
 const { headline, subtext, buttonText, whatsapp } = Astro.props;
 ---
 
-<section class="bg-primary text-white py-16 md:py-24">
+<section class="py-16 md:py-24 text-text border-y border-primary/20" style="background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%);">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-4xl mx-auto text-center">
     <h2 class="text-3xl md:text-5xl font-bold mb-4" data-animate="cta-headline">{headline}</h2>
-    <p class="text-lg text-white/80 mb-8">{subtext}</p>
+    <p class="text-lg text-text-muted mb-8">{subtext}</p>
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
       <Button variant="secondary" size="lg" text={buttonText} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" data-magnetic />
     </div>
 
-    <p class="text-white/70">
+    <p class="text-text-faint">
       O escribinos por
-      <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-white font-semibold hover:underline ml-1">
+      <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-primary font-semibold hover:underline ml-1">
         WhatsApp
       </a>
     </p>
@@ -31,7 +31,7 @@ const { headline, subtext, buttonText, whatsapp } = Astro.props;
 
 <style>
   a:focus {
-    outline: 2px solid white;
+    outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
 </style>

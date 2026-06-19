@@ -10,7 +10,7 @@ interface Props {
 const { logo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+<header class="sticky top-0 z-50 bg-surface-raised/90 backdrop-blur-md border-b border-border">
   <nav class="flex items-center justify-between px-4 md:px-8 lg:px-16 xl:px-24 py-4">
     <div class="flex items-center">
       <img src={logo} alt="Unifisio" class="h-10" />
@@ -21,7 +21,7 @@ const { logo, navLinks } = Astro.props;
         navLinks.slice(0, -1).map((link) => (
           <a
             href={link === 'Servicios' ? '#servicios' : link === 'Proceso' ? '#proceso' : '#testimonios'}
-            class="text-primary font-medium hover:text-secondary transition"
+            class="text-text font-medium hover:text-primary transition"
           >
             {link}
           </a>
