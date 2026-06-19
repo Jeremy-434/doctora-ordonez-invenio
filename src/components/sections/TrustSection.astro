@@ -1,0 +1,70 @@
+---
+interface Props {
+  trustIndicators: {
+    logos: string[];
+    metrics: string;
+    objections: string[];
+  };
+}
+
+const { trustIndicators } = Astro.props;
+---
+
+<section class="border-y border-border bg-surface overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
+    <div class="grid grid-cols-1 lg:grid-cols-3 divide-y lg:divide-y-0 lg:divide-x divide-border">
+      
+      <div class="py-12 lg:py-16 pr-0 lg:pr-12 flex flex-col justify-center" data-animate="trust-item">
+        <div class="label-caps text-text-muted mb-6">Respaldado por</div>
+        <div class="flex flex-col gap-4">
+          {trustIndicators.logos.map(logo => (
+            <div class="text-xl font-display text-text">{logo}</div>
+          ))}
+        </div>
+      </div>
+
+      <div class="py-12 lg:py-16 px-0 lg:px-12 flex flex-col justify-center" data-animate="trust-item">
+        <div class="label-caps text-text-muted mb-6">Experiencia</div>
+        <div class="text-4xl md:text-5xl font-display text-text leading-tight">
+          {trustIndicators.metrics}
+        </div>
+      </div>
+
+      <div class="py-12 lg:py-16 pl-0 lg:pl-12 flex flex-col justify-center" data-animate="trust-item">
+        <div class="label-caps text-text-muted mb-6">Importante</div>
+        <ul class="space-y-4">
+          {trustIndicators.objections.map(obj => (
+            <li class="flex items-center gap-3 text-text">
+              <span class="w-1.5 h-1.5 rounded-full bg-text-muted"></span>
+              <span>{obj}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (!prefersReduced) {
+    gsap.from('[data-animate="trust-item"]', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      stagger: 0.2,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '[data-animate="trust-item"]',
+        start: 'top 85%',
+        once: true
+      }
+    });
+  }
+</script>

@@ -4,52 +4,39 @@ import Button from '../ui/Button.astro';
 interface Props {
   headline: string;
   subheadline: string;
-  image: string;
+  trust: string;
   ctaPrimary: string;
-  ctaSecondary: string;
-  trust: string[];
 }
 
-const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.props;
+const { headline, subheadline, trust, ctaPrimary } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-bg">
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<section class="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden bg-bg">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-border">
     
-    <div class="md:col-span-12 text-center flex flex-col items-center">
-      <div
-        class="label-caps text-text-muted mb-10 overflow-hidden"
-      >
-        <span class="inline-block" data-animate="badge">Kinesiología · Rehabilitación</span>
-      </div>
-
+    <div class="md:col-span-12 flex flex-col items-start justify-center md:items-center md:text-center">
       <div class="overflow-hidden mb-8">
-        <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-display text-text leading-[0.95] tracking-tight" data-animate="headline">
-          Recuperá tu movimiento,
-          <span class="block italic font-light">recuperá tu vida.</span>
+        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-display text-text leading-[0.95] tracking-tight" data-animate="headline">
+          Fisioterapia y rehabilitación en Bogotá.<br/>
+          <span class="block italic font-light">Movimiento medido.</span>
+          <span class="block italic font-light">Recuperación con criterio.</span>
         </h1>
       </div>
 
-      <div class="overflow-hidden mb-12">
-        <p class="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed" data-animate="subheadline">
+      <div class="overflow-hidden mb-6">
+        <p class="text-lg md:text-xl text-text-muted max-w-3xl leading-relaxed" data-animate="subheadline">
           {subheadline}
         </p>
       </div>
 
-      <div class="flex flex-col sm:flex-row gap-6 mb-16 overflow-hidden" data-animate="ctas">
-        <Button variant="primary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
-        <Button variant="ghost" size="lg" text={ctaSecondary} onClick="document.getElementById('servicios')?.scrollIntoView({behavior:'smooth'})" />
+      <div class="overflow-hidden mb-12">
+        <div class="label-caps text-text-muted" data-animate="trust">
+          {trust}
+        </div>
       </div>
 
-      <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-text-muted label-caps overflow-hidden" data-animate="trust">
-        {
-          trust.map((item, index) => (
-            <>
-              <span class="inline-block">{item.replace('✓', '')}</span>
-              {index < trust.length - 1 && <span class="hidden sm:inline text-border-light">·</span>}
-            </>
-          ))
-        }
+      <div class="flex flex-col sm:flex-row gap-6 mb-16 overflow-hidden" data-animate="ctas">
+        <Button variant="primary" size="lg" text={ctaPrimary} onClick="document.getElementById('visitanos')?.scrollIntoView({behavior:'smooth'})" />
       </div>
     </div>
 
@@ -61,45 +48,39 @@ const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.
 
 <script>
   import { gsap } from 'gsap';
-  import { splitAndReveal } from '@/lib/animations';
 
   document.addEventListener('DOMContentLoaded', () => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
 
-    const badge = document.querySelector('[data-animate="badge"]');
     const headline = document.querySelector('[data-animate="headline"]');
     const subheadline = document.querySelector('[data-animate="subheadline"]');
-    const ctas = document.querySelector('[data-animate="ctas"]');
     const trust = document.querySelector('[data-animate="trust"]');
+    const ctas = document.querySelector('[data-animate="ctas"]');
     const scrollHint = document.querySelector('[data-animate="scroll-hint"]');
 
     const tl = gsap.timeline({ delay: 0.2 });
 
-    if (badge) {
-      tl.from(badge, { y: '100%', duration: 0.8, ease: 'power3.out' }, 0);
-    }
-
     if (headline) {
-      tl.from(headline, { clipPath: 'inset(100% 0 0 0)', y: 40, duration: 1.2, ease: 'power3.out' }, 0.2);
+      tl.from(headline, { clipPath: 'inset(100% 0 0 0)', y: 40, duration: 1.2, ease: 'power3.out' }, 0);
     }
 
     if (subheadline) {
       tl.from(subheadline, {
         clipPath: 'inset(100% 0 0 0)', y: 30, duration: 1, ease: 'power3.out'
-      }, 0.4);
+      }, 0.2);
+    }
+
+    if (trust) {
+      tl.from(trust, {
+        opacity: 0, duration: 0.8, ease: 'power2.out',
+      }, 0.5);
     }
 
     if (ctas) {
       tl.from(ctas.children, {
         y: '100%', opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
-      }, 0.6);
-    }
-
-    if (trust) {
-      tl.from(trust.children, {
-        opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
-      }, 0.9);
+      }, 0.7);
     }
 
     if (scrollHint) {

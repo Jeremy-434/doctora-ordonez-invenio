@@ -2,29 +2,32 @@
 import SectionHeader from '../ui/SectionHeader.astro';
 import StarRating from '../ui/StarRating.astro';
 
-interface Testimonial {
-  quote: string;
-  author: string;
-  role: string;
-  stars: number;
-}
-
 interface Props {
   title: string;
-  testimonials: Testimonial[];
+  testimonials: Array<{
+    quote: string;
+    author: string;
+    date: string;
+    stars: number;
+  }>;
 }
 
 const { title, testimonials } = Astro.props;
 ---
 
-<section id="testimonios" class="bg-bg py-24 md:py-32 border-t border-border">
+<section id="testimonios" class="bg-surface py-24 md:py-32 border-t border-border">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-    <SectionHeader title={title} align="left" />
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
+      <SectionHeader title={title} align="left" />
+      <div class="label-caps text-text-muted">
+        <span class="text-text">Casos reales</span> en video disponibles en nuestras redes
+      </div>
+    </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-border-light mt-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-border-light">
       {
         testimonials.map((testimonial) => (
-          <div class="bg-surface border-r border-b border-border-light p-10 flex flex-col h-full" data-animate="testimonial">
+          <div class="bg-bg border-r border-b border-border-light p-10 flex flex-col h-full" data-animate="testimonial">
             <div class="mb-6 font-display text-6xl text-border-light leading-none">
               "
             </div>
@@ -36,7 +39,7 @@ const { title, testimonials } = Astro.props;
                 <StarRating count={testimonial.stars} />
               </div>
               <p class="font-display font-semibold text-text text-lg">{testimonial.author}</p>
-              <p class="label-caps text-text-muted mt-2">{testimonial.role}</p>
+              <p class="label-caps text-text-muted mt-2">{testimonial.date}</p>
             </div>
           </div>
         ))

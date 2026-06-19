@@ -10,10 +10,13 @@ export default function MobileNav({ navLinks }: Props) {
   const scrollToSection = (text: string) => {
     setIsOpen(false);
     let id = '';
-    if (text === 'Servicios') id = 'servicios';
-    else if (text === 'Proceso') id = 'proceso';
-    else if (text === 'Testimonios') id = 'testimonios';
-    else if (text === 'Agendá tu turno') id = 'calendar';
+    const link = text.toLowerCase();
+    
+    if (link.includes('servicio')) id = 'servicios';
+    else if (link.includes('proceso')) id = 'proceso';
+    else if (link.includes('equipo')) id = 'equipo';
+    else if (link.includes('reseña')) id = 'testimonios';
+    else if (link.includes('ubic')) id = 'visitanos';
 
     if (id) {
       const element = document.getElementById(id);

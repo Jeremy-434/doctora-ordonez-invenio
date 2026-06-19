@@ -1,0 +1,60 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  educational: {
+    title: string;
+    subtitle: string;
+    youtubeLink: string;
+  };
+}
+
+const { educational } = Astro.props;
+---
+
+<section class="border-y border-border bg-surface py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      
+      <div data-animate="edu-text">
+        <div class="label-caps text-text-muted mb-8">Contenido de Valor</div>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-display text-text leading-tight mb-8">
+          {educational.title}
+        </h2>
+        <p class="text-lg text-text-muted mb-12">
+          {educational.subtitle}
+        </p>
+        <Button variant="primary" text="Ver canal de YouTube" onClick={`window.open('${educational.youtubeLink}', '_blank')`} />
+      </div>
+
+      <div class="aspect-video bg-bg border border-border flex items-center justify-center relative overflow-hidden" data-animate="edu-video">
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-16 h-16 rounded-full bg-text flex items-center justify-center pl-1 cursor-pointer hover:scale-110 transition-transform duration-300">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 5V19L19 12L8 5Z" fill="var(--color-bg)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    gsap.from('[data-animate="edu-text"]', {
+      x: -30, opacity: 0, duration: 1, ease: 'power2.out',
+      scrollTrigger: { trigger: '[data-animate="edu-text"]', start: 'top 85%', once: true },
+    });
+    gsap.from('[data-animate="edu-video"]', {
+      x: 30, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.2,
+      scrollTrigger: { trigger: '[data-animate="edu-video"]', start: 'top 85%', once: true },
+    });
+  }
+</script>

@@ -4,17 +4,6 @@ export interface SiteConfig {
     logo: string;
     tagline: string;
   };
-  colors: {
-    primary: string;
-    secondary: string;
-    accentLight: string;
-    bg: string;
-    text: string;
-    gold: string;
-  };
-  font: string;
-  ghlCalendarId: string;
-  calendarBaseUrl: string;
   whatsapp: string;
   seo: {
     title: string;
@@ -25,35 +14,83 @@ export interface SiteConfig {
   hero: {
     headline: string;
     subheadline: string;
-    image: string;
+    trust: string;
     ctaPrimary: string;
-    ctaSecondary: string;
-    trust: string[];
   };
-  stats: Array<{
-    value: string;
-    label: string;
-  }>;
-  services: Array<{
+  trustIndicators: {
+    logos: string[];
+    metrics: string;
+    objections: string[];
+  };
+  services: {
     title: string;
-    icon: string;
-    description: string;
-  }>;
-  process: Array<{
-    number: string;
+    items: Array<{
+      title: string;
+      icon: string;
+      description: string;
+    }>;
+    cta: string;
+  };
+  process: {
     title: string;
-    description: string;
-  }>;
-  testimonials: Array<{
-    quote: string;
-    author: string;
-    role: string;
-    stars: number;
-  }>;
-  cta: {
-    headline: string;
-    subtext: string;
-    button: string;
+    subtitle: string;
+    steps: Array<{
+      number: string;
+      title: string;
+      description: string;
+    }>;
+  };
+  infrastructure: {
+    title: string;
+    items: Array<{
+      title: string;
+      description: string;
+      image: string;
+    }>;
+  };
+  educational: {
+    title: string;
+    subtitle: string;
+    youtubeLink: string;
+  };
+  team: {
+    title: string;
+    members: Array<{
+      name: string;
+      role: string;
+      description: string;
+      image: string;
+    }>;
+  };
+  testimonials: {
+    title: string;
+    items: Array<{
+      quote: string;
+      author: string;
+      date: string;
+      stars: number;
+    }>;
+  };
+  loyalty: {
+    title: string;
+    benefits: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+  faq: {
+    title: string;
+    questions: Array<{
+      q: string;
+      a: string;
+    }>;
+  };
+  contact: {
+    title: string;
+    location: string;
+    mapUrl: string;
+    videoUrl: string;
+    reasons: string[];
   };
   footer: {
     tagline: string;
@@ -66,131 +103,191 @@ export const siteConfig: SiteConfig = {
   brand: {
     name: 'Unifisio',
     logo: '/logo.jpg',
-    tagline: 'Tu salud y movimiento son nuestra prioridad',
+    tagline: 'Movimiento medido. Recuperación con criterio.',
   },
-  colors: {
-    primary: '#00C9E4',
-    secondary: '#38BDF8',
-    accentLight: '#0C1B2B',
-    bg: '#07111D',
-    text: '#DCF0F8',
-    gold: '#F59E0B',
-  },
-  font: 'Inter',
-  ghlCalendarId: 'N2oMWoHSIvzBX4r9rvfY',
-  calendarBaseUrl: 'https://www.invenioagency.com/widget/booking/',
-  whatsapp: '+549XXXXXXXXXX',
+  whatsapp: '573000000000', // Example Colombia number
   seo: {
-    title: 'Unifisio | Kinesiología y Rehabilitación',
-    description:
-      'Tratamientos kinesiológicos personalizados. Primera consulta sin cargo. Agendá tu turno online.',
+    title: 'Unifisio | Fisioterapia y rehabilitación en Bogotá',
+    description: 'Equilibrio, rendimiento y bienestar: tu cuerpo en manos expertas.',
     ogImage: '/og-image.jpg',
     canonicalUrl: 'https://unifisio.invenioagency.com',
   },
   hero: {
-    headline: 'Recuperá tu movimiento, recuperá tu vida',
-    subheadline:
-      'Tratamientos kinesiológicos personalizados para que volvás a moverte sin dolor, con la calidez y el seguimiento que merecés.',
-    image: '/hero.jpg',
-    ctaPrimary: 'Agendá tu turno gratis',
-    ctaSecondary: 'Ver nuestros servicios',
-    trust: ['✓ Profesionales certificados', '✓ Turnos en 24 hs', '✓ Primera consulta sin cargo'],
+    headline: 'Fisioterapia y rehabilitación en Bogotá. Movimiento medido. Recuperación con criterio.',
+    subheadline: 'Equilibrio, rendimiento y bienestar: tu cuerpo en manos expertas.',
+    trust: '★ 5.0 · 108 reseñas en Google',
+    ctaPrimary: 'Reservar por WhatsApp',
   },
-  stats: [
-    { value: '+500', label: 'Pacientes atendidos' },
-    { value: '10+', label: 'Años de experiencia' },
-    { value: '98%', label: 'Satisfacción de pacientes' },
-    { value: '20+', label: 'Tratamientos disponibles' },
-  ],
-  services: [
-    {
-      title: 'Kinesiología Deportiva',
-      icon: '🏃',
-      description:
-        'Rehabilitación y prevención de lesiones para deportistas de todos los niveles y disciplinas.',
-    },
-    {
-      title: 'Rehabilitación Post-Quirúrgica',
-      icon: '🔧',
-      description:
-        'Acompañamos tu recuperación después de una cirugía con protocolos actualizados y seguimiento personalizado.',
-    },
-    {
-      title: 'Tratamiento del Dolor',
-      icon: '⚡',
-      description:
-        'Abordaje integral del dolor agudo y crónico de columna, cuello, hombros y articulaciones.',
-    },
-    {
-      title: 'Electroterapia',
-      icon: '🔬',
-      description:
-        'Técnicas de neuroestimulación y ultrasonido terapéutico para acelerar la cicatrización y reducir el dolor.',
-    },
-    {
-      title: 'Pilates Terapéutico',
-      icon: '🧘',
-      description:
-        'Fortalecimiento del core, corrección postural y mejora del equilibrio con ejercicio terapéutico supervisado.',
-    },
-    {
-      title: 'Atención Domiciliaria',
-      icon: '🏠',
-      description:
-        'Llevamos el tratamiento hasta tu hogar para mayor comodidad, continuidad y adherencia al tratamiento.',
-    },
-  ],
-  process: [
-    {
-      number: '01',
-      title: 'Evaluación inicial',
-      description:
-        'Analizamos tu condición, historial clínico y objetivos para diseñar el plan de tratamiento ideal para vos.',
-    },
-    {
-      number: '02',
-      title: 'Plan personalizado',
-      description:
-        'Aplicamos el tratamiento más adecuado con seguimiento continuo de tu evolución y ajustes cuando sea necesario.',
-    },
-    {
-      number: '03',
-      title: 'Alta y mantenimiento',
-      description:
-        'Te acompañamos hasta la recuperación total y te damos las herramientas para mantenerte sano y activo.',
-    },
-  ],
-  testimonials: [
-    {
-      quote:
-        'Llegué con dolor crónico de columna y después de 8 sesiones pude retomar el deporte. Excelente atención, muy profesionales y siempre disponibles para consultas.',
-      author: 'María G.',
-      role: 'Paciente — Kinesiología deportiva',
-      stars: 5,
-    },
-    {
-      quote:
-        'Me operaron la rodilla y Unifisio me ayudó a recuperarme mucho más rápido de lo esperado. El seguimiento fue constante y los resultados, increíbles.',
-      author: 'Carlos M.',
-      role: 'Paciente — Rehabilitación post-quirúrgica',
-      stars: 5,
-    },
-    {
-      quote:
-        'El servicio a domicilio fue ideal para mí. Muy puntual, profesional y efectivo. Ya no tengo los dolores que me impedían trabajar. Los recomiendo al 100%.',
-      author: 'Laura S.',
-      role: 'Paciente — Atención domiciliaria',
-      stars: 5,
-    },
-  ],
-  cta: {
-    headline: '¿Seguís viviendo con dolor?',
-    subtext: 'La primera consulta es sin cargo. Agendá hoy y empezá tu recuperación.',
-    button: 'Reservar mi turno',
+  trustIndicators: {
+    logos: ['Universidad Europea - Real Madrid', 'Universidad Iberoamericana'],
+    metrics: '+15 años atendiendo en Bogotá',
+    objections: ['Particular (Sin EPS)', 'Cotización personalizada', 'Cita para el día siguiente'],
+  },
+  services: {
+    title: 'Especialidades',
+    items: [
+      {
+        title: 'Recuperación y rendimiento',
+        icon: '01',
+        description: 'Traumatología y deportiva.',
+      },
+      {
+        title: 'Especialidades clínicas',
+        icon: '02',
+        description: 'Neurológica, geriátrica, suelo pélvico, oncológica.',
+      },
+      {
+        title: 'Técnicas de tratamiento',
+        icon: '03',
+        description: 'Fisioterapia invasiva (punción seca/EPI), agentes físicos, terapia manual.',
+      },
+      {
+        title: 'Prevención y bienestar',
+        icon: '04',
+        description: 'Laboral, dolor crónico.',
+      },
+    ],
+    cta: '¿No sabes cuál te corresponde? Cuéntanos por WhatsApp.',
+  },
+  process: {
+    title: 'Metodología',
+    subtitle: 'No te toca turno. Te toca proceso.',
+    steps: [
+      {
+        number: '01',
+        title: 'Agendas',
+        description: 'Nos contactas y coordinamos tu cita rápidamente, sin esperas de meses.',
+      },
+      {
+        number: '02',
+        title: 'Diagnosticamos',
+        description: 'Evaluación clínica profunda para entender el origen de tu problema.',
+      },
+      {
+        number: '03',
+        title: 'Tratamos',
+        description: 'Aplicamos la técnica exacta que tu cuerpo necesita, combinando métodos si es necesario.',
+      },
+      {
+        number: '04',
+        title: 'Acompañamos',
+        description: 'Seguimiento de tu evolución hasta darte el alta y prevenir recaídas.',
+      },
+    ],
+  },
+  infrastructure: {
+    title: 'El Espacio',
+    items: [
+      {
+        title: 'Ejercicio terapéutico',
+        description: 'Área equipada para rehabilitación funcional.',
+        image: '/infra-1.jpg',
+      },
+      {
+        title: 'Camilla profesional',
+        description: 'Espacio privado y cómodo para terapia manual.',
+        image: '/infra-2.jpg',
+      },
+      {
+        title: 'Terapia invasiva',
+        description: 'Entorno clínico estéril para procedimientos.',
+        image: '/infra-3.jpg',
+      },
+    ],
+  },
+  educational: {
+    title: 'Expertos que enseñan',
+    subtitle: 'Aprende con nosotros desde casa. Visita nuestro canal de YouTube para rutinas y consejos.',
+    youtubeLink: 'https://youtube.com',
+  },
+  team: {
+    title: 'Quién te atiende',
+    members: [
+      {
+        name: 'Dra. Jeniffer Carolina Ramírez',
+        role: 'Enfoque clínico y Cuidado crítico',
+        description: 'Especialista en rehabilitación compleja y atención clínica detallada.',
+        image: '/team-1.jpg',
+      },
+      {
+        name: 'Dr. Sebastián Guzmán',
+        role: 'Fisioterapia deportiva - Real Madrid',
+        description: 'Experto en rendimiento deportivo y recuperación acelerada de lesiones.',
+        image: '/team-2.jpg',
+      },
+    ],
+  },
+  testimonials: {
+    title: 'Lo que dicen nuestros pacientes',
+    items: [
+      {
+        quote: 'La atención es impecable. El Dr. Sebastián me ayudó a volver a correr después de una lesión grave.',
+        author: 'Andrés M.',
+        date: 'Hace 2 semanas',
+        stars: 5,
+      },
+      {
+        quote: 'Llegué con dolor crónico y la Dra. Jeniffer encontró la causa en la primera sesión. Increíble equipo.',
+        author: 'Laura V.',
+        date: 'Hace 1 mes',
+        stars: 5,
+      },
+      {
+        quote: 'El espacio, los equipos y la calidad humana son de otro nivel. Cien por ciento recomendados en Bogotá.',
+        author: 'Felipe C.',
+        date: 'Hace 2 meses',
+        stars: 5,
+      },
+    ],
+  },
+  loyalty: {
+    title: 'Nuestros Beneficios',
+    benefits: [
+      {
+        title: '50% OFF',
+        description: 'Por un referido',
+      },
+      {
+        title: '1 Sesión Gratis',
+        description: 'Por dos referidos',
+      },
+      {
+        title: '15% OFF',
+        description: 'En tu mes de cumpleaños',
+      },
+    ],
+  },
+  faq: {
+    title: 'Preguntas Frecuentes',
+    questions: [
+      {
+        q: '¿Dónde están ubicados?',
+        a: 'Nos encontramos en el barrio Los Mártires, Bogotá. Cerca de las vías principales.',
+      },
+      {
+        q: '¿Por qué no publican los precios?',
+        a: 'Cada paciente es único. Realizamos una cotización personalizada basada en el tipo de tratamiento y duración que realmente necesitas.',
+      },
+      {
+        q: '¿Qué es la punción seca?',
+        a: 'Es una técnica de fisioterapia invasiva que utiliza agujas muy finas para tratar puntos gatillo y relajar la musculatura profunda.',
+      },
+      {
+        q: '¿Atienden EPS?',
+        a: 'Somos una clínica particular. Esto nos permite dedicarte el tiempo completo (sin afanes) y usar tecnología avanzada en cada sesión.',
+      },
+    ],
+  },
+  contact: {
+    title: 'Visítanos',
+    location: 'Los Mártires, Bogotá, Colombia',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127253.25362947477!2d-74.19502985392074!3d4.646549221191068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a2fb60a12e5%3A0xc3191f63b4f9f60!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1sen!2sus!4v1717281352467!5m2!1sen!2sus',
+    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ', // placeholder
+    reasons: ['Lesión deportiva', 'Dolor crónico', 'Rehabilitación post-quirúrgica', 'Otro'],
   },
   footer: {
-    tagline: 'Tu salud y movimiento son nuestra prioridad',
-    navLinks: ['Servicios', 'Proceso', 'Testimonios', 'Agendá tu turno'],
-    copyright: '© 2025 Unifisio. Todos los derechos reservados.',
+    tagline: 'Tu cuerpo en manos expertas.',
+    navLinks: ['Servicios', 'Proceso', 'Equipo', 'Reseñas', 'Ubicación'],
+    copyright: '© 2026 Unifisio. Todos los derechos reservados.',
   },
 };

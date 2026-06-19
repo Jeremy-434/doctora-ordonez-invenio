@@ -1,0 +1,62 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+
+interface Props {
+  infrastructure: {
+    title: string;
+    items: Array<{
+      title: string;
+      description: string;
+      image: string;
+    }>;
+  };
+}
+
+const { infrastructure } = Astro.props;
+---
+
+<section id="infraestructura" class="bg-bg py-24 md:py-32 border-t border-border">
+  <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+    <SectionHeader title={infrastructure.title} align="left" />
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-t border-border-light mt-16">
+      {
+        infrastructure.items.map((item) => (
+          <div class="border-r border-b border-border-light group overflow-hidden" data-animate="infra-card">
+            <div class="aspect-video bg-surface overflow-hidden relative border-b border-border-light">
+              <!-- Placeholder for actual image -->
+              <div class="absolute inset-0 bg-text-faint/10 transition-transform duration-700 group-hover:scale-105"></div>
+              <div class="absolute inset-0 flex items-center justify-center text-text-faint label-caps opacity-50">Image: {item.title}</div>
+            </div>
+            <div class="p-8">
+              <h3 class="font-display text-xl text-text mb-2">{item.title}</h3>
+              <p class="text-text-muted text-sm">{item.description}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    gsap.from('[data-animate="infra-card"]', {
+      opacity: 0,
+      y: 20,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '#infraestructura .grid',
+        start: 'top 85%',
+        once: true,
+      },
+    });
+  }
+</script>

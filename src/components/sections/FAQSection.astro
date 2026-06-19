@@ -1,0 +1,57 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+
+interface Props {
+  faq: {
+    title: string;
+    questions: Array<{
+      q: string;
+      a: string;
+    }>;
+  };
+}
+
+const { faq } = Astro.props;
+---
+
+<section class="bg-surface py-24 md:py-32 border-t border-border">
+  <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-3xl mx-auto">
+    <SectionHeader title={faq.title} align="center" />
+
+    <div class="mt-16 divide-y divide-border">
+      {
+        faq.questions.map((item, i) => (
+          <details class="group" data-animate="faq-item">
+            <summary class="flex justify-between items-center font-display text-xl text-text cursor-pointer list-none py-6 pr-4 marker:hidden">
+              <span>{item.q}</span>
+              <span class="transition group-open:rotate-45 text-2xl font-light">+</span>
+            </summary>
+            <div class="text-text-muted pb-6 pr-8 leading-relaxed">
+              <p>{item.a}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    gsap.from('[data-animate="faq-item"]', {
+      opacity: 0, y: 20, duration: 0.8, stagger: 0.1, ease: 'power2.out',
+      scrollTrigger: { trigger: '[data-animate="faq-item"]', start: 'top 90%', once: true },
+    });
+  }
+</script>

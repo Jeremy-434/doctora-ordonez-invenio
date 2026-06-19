@@ -1,0 +1,42 @@
+---
+interface Props {
+  loyalty: {
+    title: string;
+    benefits: Array<{
+      title: string;
+      description: string;
+    }>;
+  };
+}
+
+const { loyalty } = Astro.props;
+---
+
+<section class="bg-text text-bg py-24 border-y border-text">
+  <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 text-center">
+    <h2 class="text-3xl md:text-5xl font-display mb-16">{loyalty.title}</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-bg/20">
+      {loyalty.benefits.map(benefit => (
+        <div class="py-8 md:py-0 px-4" data-animate="loyalty-item">
+          <div class="text-4xl md:text-5xl font-display mb-4">{benefit.title}</div>
+          <p class="label-caps opacity-80">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    gsap.from('[data-animate="loyalty-item"]', {
+      opacity: 0, y: 20, duration: 0.8, stagger: 0.2, ease: 'power2.out',
+      scrollTrigger: { trigger: '[data-animate="loyalty-item"]', start: 'top 85%', once: true },
+    });
+  }
+</script>

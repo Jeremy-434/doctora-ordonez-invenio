@@ -21,16 +21,26 @@ const { logo, tagline, navLinks, copyright } = Astro.props;
         <h4 class="label-caps mb-6 text-inverted-text">Navegación</h4>
         <ul class="space-y-4">
           {
-            navLinks.map((link) => (
-              <li>
-                <a
-                  href={link === 'Servicios' ? '#servicios' : link === 'Proceso' ? '#proceso' : link === 'Testimonios' ? '#testimonios' : '#calendar'}
-                  class="text-inverted-muted hover:text-inverted-text transition-colors text-sm"
-                >
-                  {link}
-                </a>
-              </li>
-            ))
+            navLinks.map((link) => {
+              let id = '#';
+              const l = link.toLowerCase();
+              if (l.includes('servicio')) id = '#servicios';
+              else if (l.includes('proceso')) id = '#proceso';
+              else if (l.includes('equipo')) id = '#equipo';
+              else if (l.includes('reseña')) id = '#testimonios';
+              else if (l.includes('ubic')) id = '#visitanos';
+
+              return (
+                <li>
+                  <a
+                    href={id}
+                    class="text-inverted-muted hover:text-inverted-text transition-colors text-sm"
+                  >
+                    {link}
+                  </a>
+                </li>
+              );
+            })
           }
         </ul>
       </div>

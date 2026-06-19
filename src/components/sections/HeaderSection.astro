@@ -18,19 +18,28 @@ const { logo, navLinks } = Astro.props;
 
     <div class="hidden md:flex items-center gap-8">
       {
-        navLinks.slice(0, -1).map((link) => (
-          <a
-            href={link === 'Servicios' ? '#servicios' : link === 'Proceso' ? '#proceso' : '#testimonios'}
-            class="text-text font-medium hover:text-text-muted transition-colors label-caps"
-          >
-            {link}
-          </a>
-        ))
+        navLinks.map((link) => {
+          let id = '#';
+          if (link.toLowerCase().includes('servicio')) id = '#servicios';
+          else if (link.toLowerCase().includes('proceso')) id = '#proceso';
+          else if (link.toLowerCase().includes('equipo')) id = '#equipo';
+          else if (link.toLowerCase().includes('reseña')) id = '#testimonios';
+          else if (link.toLowerCase().includes('ubic')) id = '#visitanos';
+
+          return (
+            <a
+              href={id}
+              class="text-text font-medium hover:text-text-muted transition-colors label-caps"
+            >
+              {link}
+            </a>
+          );
+        })
       }
     </div>
 
     <div class="hidden md:flex items-center gap-4">
-      <Button variant="ghost" size="sm" text="Agendá tu turno" onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+      <Button variant="ghost" size="sm" text="WhatsApp" onClick="document.getElementById('visitanos')?.scrollIntoView({behavior:'smooth'})" />
     </div>
 
     <div class="md:hidden">

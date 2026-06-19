@@ -1,37 +1,46 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
 import Card from '../ui/Card.astro';
-
-interface Service {
-  title: string;
-  icon: string;
-  description: string;
-}
+import Button from '../ui/Button.astro';
 
 interface Props {
-  title: string;
-  subtitle: string;
-  services: Service[];
+  services: {
+    title: string;
+    items: Array<{
+      title: string;
+      icon: string;
+      description: string;
+    }>;
+    cta: string;
+  };
 }
 
-const { title, subtitle, services } = Astro.props;
+const { services } = Astro.props;
 ---
 
 <section id="servicios" class="bg-bg py-24 md:py-32">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-    <SectionHeader title={title} subtitle={subtitle} align="center" />
+    <SectionHeader title={services.title} align="left" />
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-l border-t border-border-light">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-t border-border-light mt-12">
       {
-        services.map((service, index) => (
+        services.items.map((service, index) => (
           <div class="border-r border-b border-border-light">
-            <Card title={service.title} body={service.description} icon={String(index + 1).padStart(2, '0')} />
+            <Card title={service.title} body={service.description} icon={service.icon} />
           </div>
         ))
       }
     </div>
+
+    <div class="mt-16 pt-8 border-t border-border-light flex flex-col md:flex-row items-center justify-between gap-8">
+      <p class="text-xl text-text-muted font-display italic">
+        {services.cta}
+      </p>
+      <Button variant="primary" text="Contactar por WhatsApp" onClick="document.getElementById('visitanos')?.scrollIntoView({behavior:'smooth'})" />
+    </div>
   </div>
 </section>
+
 
 <script>
   import { gsap } from 'gsap';
