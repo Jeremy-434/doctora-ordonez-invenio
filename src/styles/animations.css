@@ -25,3 +25,23 @@
 @media (hover: none) {
   * { cursor: auto; }
 }
+
+/* Hero gradient text accent */
+.hero-gradient-text {
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll indicator bounce */
+@keyframes scroll-bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.5; }
+  50%       { transform: translateY(6px); opacity: 1; }
+}
+.scroll-indicator {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+  color: var(--color-primary);
+  font-size: 1.25rem;
+  font-weight: 500;
+}
