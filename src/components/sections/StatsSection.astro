@@ -11,14 +11,14 @@ interface Props {
 const { stats } = Astro.props;
 ---
 
-<section class="py-16 md:py-24 text-text border-y border-border" style="background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-raised) 100%);">
-  <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+<section class="border-y border-border bg-surface">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 divide-x divide-y md:divide-y-0 divide-border">
       {
         stats.map((stat) => (
-          <div class="text-center" data-animate="stat">
-            <div class="text-3xl md:text-5xl font-bold mb-2" data-stat-value>{stat.value}</div>
-            <p class="text-text-muted text-sm md:text-base">{stat.label}</p>
+          <div class="text-center py-16 md:py-20 px-6 flex flex-col justify-center items-center" data-animate="stat">
+            <div class="text-5xl md:text-6xl font-display text-text mb-4" data-stat-value>{stat.value}</div>
+            <p class="label-caps text-text-muted">{stat.label}</p>
           </div>
         ))
       }
@@ -47,19 +47,19 @@ const { stats } = Astro.props;
       const obj = { val: 0 };
       gsap.to(obj, {
         val: num,
-        duration: 1.8,
-        ease: 'power1.out',
+        duration: 2,
+        ease: 'power2.out',
         onUpdate: () => {
           valueEl.textContent = prefix + Math.round(obj.val) + suffix;
         },
-        scrollTrigger: { trigger: stat, start: 'top 85%', once: true },
+        scrollTrigger: { trigger: stat, start: 'top 90%', once: true },
       });
     }
 
     if (!prefersReduced) {
       gsap.from(stat, {
-        y: 30, opacity: 0, duration: 0.6,
-        scrollTrigger: { trigger: stat, start: 'top 85%', once: true },
+        opacity: 0, duration: 1,
+        scrollTrigger: { trigger: stat, start: 'top 90%', once: true },
       });
     }
   });

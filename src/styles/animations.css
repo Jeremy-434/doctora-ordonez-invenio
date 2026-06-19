@@ -26,12 +26,18 @@
   * { cursor: auto; }
 }
 
-/* Hero gradient text accent */
-.hero-gradient-text {
-  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Editorial Serif text accent */
+.text-editorial {
+  font-family: 'Playfair Display', Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+.label-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
 }
 
 /* Scroll indicator bounce */
@@ -41,7 +47,7 @@
 }
 .scroll-indicator {
   animation: scroll-bounce 1.8s ease-in-out infinite;
-  color: var(--color-primary);
+  color: var(--color-border);
   font-size: 1.25rem;
-  font-weight: 500;
+  font-family: 'Playfair Display', Georgia, serif;
 }

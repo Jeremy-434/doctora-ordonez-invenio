@@ -29,9 +29,10 @@ export default function ScrollProgress() {
       ref={bar}
       style={{
         position: 'fixed',
-        top: 0, left: 0,
-        width: '100%', height: '3px',
-        backgroundColor: 'var(--color-secondary)',
+        top: '73px', /* Just below the sticky header */
+        left: 0,
+        width: '100%', height: '1px',
+        backgroundColor: 'var(--color-text)',
         transformOrigin: 'left',
         transform: 'scaleX(0)',
         zIndex: 9997,

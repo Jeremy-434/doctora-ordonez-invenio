@@ -10,11 +10,11 @@ interface Props {
 const { title, subtitle, calendarUrl } = Astro.props;
 ---
 
-<section id="calendar" class="bg-accent-light py-16 md:py-24">
+<section id="calendar" class="bg-bg py-24 md:py-32">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
     <SectionHeader title={title} subtitle={subtitle} align="center" />
 
-    <div class="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+    <div class="w-full max-w-4xl mx-auto bg-surface border border-border rounded-[18px] overflow-hidden">
       <iframe
         src={calendarUrl}
         style="width:100%;min-height:700px;border:none;overflow:hidden;"

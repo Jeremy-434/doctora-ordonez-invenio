@@ -11,28 +11,36 @@ interface Props {
 const { headline, subtext, buttonText, whatsapp } = Astro.props;
 ---
 
-<section class="py-16 md:py-24 text-text border-y border-primary/20" style="background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg) 100%);">
+<section class="py-24 md:py-32 bg-inverted-bg text-inverted-text border-y border-border">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-4xl mx-auto text-center">
-    <h2 class="text-3xl md:text-5xl font-bold mb-4" data-animate="cta-headline">{headline}</h2>
-    <p class="text-lg text-text-muted mb-8">{subtext}</p>
-
-    <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-      <Button variant="secondary" size="lg" text={buttonText} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" data-magnetic />
+    <div class="overflow-hidden mb-8">
+      <h2 class="text-5xl md:text-7xl font-display leading-[1.1] tracking-tight" data-animate="cta-headline">{headline}</h2>
+    </div>
+    <div class="overflow-hidden mb-12">
+      <p class="text-xl text-inverted-muted max-w-2xl mx-auto" data-animate="cta-subtext">{subtext}</p>
     </div>
 
-    <p class="text-text-faint">
-      O escribinos por
-      <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-primary font-semibold hover:underline ml-1">
-        WhatsApp
+    <div class="flex flex-col sm:flex-row gap-6 justify-center mb-10 overflow-hidden" data-animate="cta-button">
+      <a href="#calendar" class="inline-block rounded-pill font-medium uppercase tracking-widest transition-colors duration-300 bg-inverted-text text-inverted-bg hover:bg-inverted-bg hover:text-inverted-text border border-inverted-text px-10 py-4 text-sm">
+        {buttonText}
       </a>
-    </p>
+    </div>
+
+    <div class="overflow-hidden">
+      <p class="text-inverted-muted label-caps" data-animate="cta-whatsapp">
+        O escribinos por
+        <a href={`https://wa.me/${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" class="text-inverted-text font-semibold hover:underline ml-2">
+          WhatsApp
+        </a>
+      </p>
+    </div>
   </div>
 </section>
 
 <style>
   a:focus {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
+    outline: 2px solid var(--color-inverted-text);
+    outline-offset: 4px;
   }
 </style>
 
@@ -40,11 +48,20 @@ const { headline, subtext, buttonText, whatsapp } = Astro.props;
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
-  import { splitAndReveal } from '@/lib/animations';
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const el = document.querySelector('[data-animate="cta-headline"]');
-  if (el && !prefersReduced) {
-    splitAndReveal(el, { delay: 0.1 });
+  if (!prefersReduced) {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '[data-animate="cta-headline"]',
+        start: 'top 85%',
+        once: true
+      }
+    });
+
+    tl.from('[data-animate="cta-headline"]', { clipPath: 'inset(100% 0 0 0)', y: 40, duration: 1.2, ease: 'power3.out' })
+      .from('[data-animate="cta-subtext"]', { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
+      .from('[data-animate="cta-button"]', { opacity: 0, y: 20, duration: 0.8 }, "-=0.6")
+      .from('[data-animate="cta-whatsapp"]', { opacity: 0, duration: 0.8 }, "-=0.4");
   }
 </script>

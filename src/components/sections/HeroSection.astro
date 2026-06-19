@@ -1,6 +1,5 @@
 ---
 import Button from '../ui/Button.astro';
-import AmbientBackground from '../ui/AmbientBackground';
 
 interface Props {
   headline: string;
@@ -14,56 +13,51 @@ interface Props {
 const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.props;
 ---
 
-<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-  <AmbientBackground client:only="react" />
+<section class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-bg">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+    
+    <div class="md:col-span-12 text-center flex flex-col items-center">
+      <div
+        class="label-caps text-text-muted mb-10 overflow-hidden"
+      >
+        <span class="inline-block" data-animate="badge">Kinesiología · Rehabilitación</span>
+      </div>
 
-  <div class="absolute inset-0 z-[1]" style="background: var(--hero-gradient);"></div>
-  <div class="absolute bottom-0 inset-x-0 h-32 z-[1]" style="background: linear-gradient(to bottom, transparent, var(--color-bg));"></div>
+      <div class="overflow-hidden mb-8">
+        <h1 class="text-5xl md:text-7xl lg:text-[7rem] font-display text-text leading-[0.95] tracking-tight" data-animate="headline">
+          Recuperá tu movimiento,
+          <span class="block italic font-light">recuperá tu vida.</span>
+        </h1>
+      </div>
 
-  <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24">
-    <div
-      class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/8 text-primary text-xs font-semibold tracking-widest uppercase mb-6"
-      data-animate="badge"
-    >
-      Kinesiología · Rehabilitación
+      <div class="overflow-hidden mb-12">
+        <p class="text-lg md:text-xl text-text-muted max-w-2xl mx-auto leading-relaxed" data-animate="subheadline">
+          {subheadline}
+        </p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-6 mb-16 overflow-hidden" data-animate="ctas">
+        <Button variant="primary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+        <Button variant="ghost" size="lg" text={ctaSecondary} onClick="document.getElementById('servicios')?.scrollIntoView({behavior:'smooth'})" />
+      </div>
+
+      <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-text-muted label-caps overflow-hidden" data-animate="trust">
+        {
+          trust.map((item, index) => (
+            <>
+              <span class="inline-block">{item.replace('✓', '')}</span>
+              {index < trust.length - 1 && <span class="hidden sm:inline text-border-light">·</span>}
+            </>
+          ))
+        }
+      </div>
     </div>
 
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-text mb-6 leading-tight" data-animate="headline">
-      Recuperá tu <span class="hero-gradient-text">movimiento</span>, recuperá tu vida
-    </h1>
-
-    <p class="text-lg md:text-xl text-text-muted/90 mb-10 max-w-xl leading-relaxed" data-animate="subheadline">
-      {subheadline}
-    </p>
-
-    <div class="flex flex-col sm:flex-row gap-5 mb-12" data-animate="ctas">
-      <Button variant="secondary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" data-magnetic class="shadow-md" />
-      <Button variant="ghost" size="lg" text={ctaSecondary + ' →'} onClick="document.getElementById('servicios')?.scrollIntoView({behavior:'smooth'})" class="text-primary border-primary hover:bg-primary/10" />
-    </div>
-
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-text-muted text-sm mt-10" data-animate="trust">
-      {
-        trust.map((item, index) => (
-          <>
-            <span>{item.replace('✓', '')}</span>
-            <span class="text-success">{item.includes('✓') ? '✓' : ''}</span>
-            {index < trust.length - 1 && <span class="hidden sm:inline text-border">·</span>}
-          </>
-        ))
-      }
-    </div>
-
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2]" data-animate="scroll-hint">
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] overflow-hidden" data-animate="scroll-hint">
       <div class="scroll-indicator">↓</div>
     </div>
   </div>
 </section>
-
-<style>
-  section {
-    background-attachment: fixed;
-  }
-</style>
 
 <script>
   import { gsap } from 'gsap';
@@ -80,43 +74,36 @@ const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.
     const trust = document.querySelector('[data-animate="trust"]');
     const scrollHint = document.querySelector('[data-animate="scroll-hint"]');
 
-    const tl = gsap.timeline({ delay: 0.15 });
+    const tl = gsap.timeline({ delay: 0.2 });
 
-    // Badge: fade in first
     if (badge) {
-      tl.from(badge, { opacity: 0, y: -12, duration: 0.6, ease: 'power2.out' }, 0);
+      tl.from(badge, { y: '100%', duration: 0.8, ease: 'power3.out' }, 0);
     }
 
-    // Headline: words slide up one by one
-    if (headline) splitAndReveal(headline, { delay: 0.2 });
+    if (headline) {
+      tl.from(headline, { clipPath: 'inset(100% 0 0 0)', y: 40, duration: 1.2, ease: 'power3.out' }, 0.2);
+    }
 
-    // Subheadline: fade up + blur focus
     if (subheadline) {
       tl.from(subheadline, {
-        y: 25, opacity: 0, duration: 0.7, ease: 'power2.out',
-        filter: 'blur(6px)',
-        onStart: () => { subheadline.style.filter = 'blur(6px)'; },
-        onComplete: () => { subheadline.style.filter = 'blur(0px)'; }
-      }, 0.5);
+        clipPath: 'inset(100% 0 0 0)', y: 30, duration: 1, ease: 'power3.out'
+      }, 0.4);
     }
 
-    // CTA buttons: scale + fade
     if (ctas) {
       tl.from(ctas.children, {
-        y: 20, opacity: 0, scale: 0.95, duration: 0.6, stagger: 0.12, ease: 'back.out(1.2)',
-      }, 0.8);
+        y: '100%', opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
+      }, 0.6);
     }
 
-    // Trust bar items: fade in staggered
     if (trust) {
       tl.from(trust.children, {
-        opacity: 0, y: 10, duration: 0.4, stagger: 0.08,
-      }, 1.1);
+        opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power2.out',
+      }, 0.9);
     }
 
-    // Scroll indicator: fade in last, then loop with CSS
     if (scrollHint) {
-      tl.from(scrollHint, { opacity: 0, y: -8, duration: 0.5 }, 1.5);
+      tl.from(scrollHint, { opacity: 0, duration: 1 }, 1.2);
     }
   });
 </script>

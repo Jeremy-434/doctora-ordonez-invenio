@@ -1,55 +1,48 @@
-/* ─── Unifisio Design Tokens — Dark mode first ─── */
+/* ─── Unifisio Design Tokens — Editorial Swiss ─── */
 
 :root {
-  /* Backgrounds */
-  --color-bg: #07111D;
-  --color-surface: #0C1B2B;
-  --color-surface-raised: #112438;
-  --color-border: #1A3448;
-
-  /* Brand */
-  --color-primary: #00C9E4;
-  --color-primary-dim: #007E91;
-  --color-secondary: #38BDF8;
-  --color-deep: #0B5E8A;
+  /* PRIMARY MODE — Off-white / Warm Beige */
+  --color-bg: #F5F0E8;
+  --color-surface: #FDFAF5;
+  --color-surface-raised: #FFFFFF;
+  --color-border: #1A1A1A;
+  --color-border-light: #D4CFC5;
 
   /* Text */
-  --color-text: #DCF0F8;
-  --color-text-muted: #6B9BB5;
-  --color-text-faint: #3E6985;
+  --color-text: #0F0F0F;
+  --color-text-muted: #6B6560;
+  --color-text-faint: #B0A99E;
+
+  /* Brand */
+  --color-primary: #1A1A1A;
+  --color-primary-dim: #333333;
+  --color-secondary: #0F0F0F;
+  --color-deep: #000000;
 
   /* Semantic */
-  --color-gold: #F59E0B;
-  --color-success: #34D399;
+  --color-gold: #C8A96E;
+  --color-success: #1A1A1A;
 
-  /* Glows — not drop shadows */
-  --shadow-sm: 0 0 0 1px rgba(0,201,228,0.08), 0 2px 8px rgba(0,0,0,0.3);
-  --shadow-md: 0 0 0 1px rgba(0,201,228,0.14), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(0,201,228,0.08);
-  --shadow-lg: 0 0 0 1px rgba(0,201,228,0.1), 0 16px 64px rgba(0,0,0,0.5), 0 0 80px rgba(0,201,228,0.06);
+  /* INVERTED MODE — Jet black sections */
+  --color-inverted-bg: #0F0F0F;
+  --color-inverted-text: #F5F0E8;
+  --color-inverted-muted: #8A8278;
 
-  /* Hero overlay */
-  --hero-gradient: linear-gradient(to right, #07111DF0 0%, #07111DCC 35%, #07111D66 65%, transparent 100%);
+  /* No glows — geometry only */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
 
   /* Geometry */
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 20px;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --radius-lg: 24px;
 }
 
-[data-theme="light"] {
-  --color-bg: #FFFFFF;
-  --color-surface: #F0F8FC;
-  --color-surface-raised: #FFFFFF;
-  --color-border: #C8DDE9;
-  --color-text: #0A1A25;
-  --color-text-muted: #3D6070;
-  --color-text-faint: #7FA3B5;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
-  --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
-  --hero-gradient: linear-gradient(to right, #0B5E8ADD 35%, transparent);
+[data-theme="dark"] {
+  /* No dark mode */
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; color-scheme: dark; }
-body { font-family: Inter, sans-serif; color: var(--color-text); background-color: var(--color-bg); }
+html { scroll-behavior: smooth; color-scheme: light; }
+body { font-family: 'DM Sans', sans-serif; color: var(--color-text); background-color: var(--color-bg); }

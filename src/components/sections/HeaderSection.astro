@@ -10,10 +10,10 @@ interface Props {
 const { logo, navLinks } = Astro.props;
 ---
 
-<header class="sticky top-0 z-50 bg-surface-raised/90 backdrop-blur-md border-b border-border">
+<header class="sticky top-0 z-50 bg-bg border-b border-border">
   <nav class="flex items-center justify-between px-4 md:px-8 lg:px-16 xl:px-24 py-4">
     <div class="flex items-center">
-      <img src={logo} alt="Unifisio" class="h-10" />
+      <img src={logo} alt="Unifisio" class="h-10" style="filter: invert(1) brightness(0);" />
     </div>
 
     <div class="hidden md:flex items-center gap-8">
@@ -21,7 +21,7 @@ const { logo, navLinks } = Astro.props;
         navLinks.slice(0, -1).map((link) => (
           <a
             href={link === 'Servicios' ? '#servicios' : link === 'Proceso' ? '#proceso' : '#testimonios'}
-            class="text-text font-medium hover:text-primary transition"
+            class="text-text font-medium hover:text-text-muted transition-colors label-caps"
           >
             {link}
           </a>
@@ -30,7 +30,7 @@ const { logo, navLinks } = Astro.props;
     </div>
 
     <div class="hidden md:flex items-center gap-4">
-      <Button variant="secondary" size="md" text="Agendá tu turno" onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+      <Button variant="ghost" size="sm" text="Agendá tu turno" onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
     </div>
 
     <div class="md:hidden">
@@ -41,7 +41,7 @@ const { logo, navLinks } = Astro.props;
 
 <style>
   a:focus {
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid var(--color-border);
     outline-offset: 4px;
   }
 
@@ -52,9 +52,9 @@ const { logo, navLinks } = Astro.props;
     nav a::after {
       content: '';
       position: absolute;
-      left: 0; bottom: -2px;
-      width: 100%; height: 1.5px;
-      background: var(--color-secondary);
+      left: 0; bottom: -4px;
+      width: 100%; height: 1px;
+      background: var(--color-text);
       transform: scaleX(0);
       transform-origin: right;
       transition: transform 0.3s ease;

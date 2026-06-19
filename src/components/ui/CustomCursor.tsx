@@ -22,13 +22,13 @@ export default function CustomCursor() {
       };
 
       const ticker = gsap.ticker.add(() => {
-        ringX += (mouse.x - ringX) * 0.12;
-        ringY += (mouse.y - ringY) * 0.12;
+        ringX += (mouse.x - ringX) * 0.15;
+        ringY += (mouse.y - ringY) * 0.15;
         gsap.set(ring.current, { x: ringX, y: ringY });
       });
 
       const onEnterLink = () => {
-        gsap.to(ring.current, { scale: 2.2, duration: 0.3, ease: 'power2.out' });
+        gsap.to(ring.current, { scale: 1.5, duration: 0.3, ease: 'power2.out' });
         gsap.to(dot.current, { scale: 0, duration: 0.2 });
       };
       const onLeaveLink = () => {
@@ -57,14 +57,14 @@ export default function CustomCursor() {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '6px',
-          height: '6px',
+          width: '4px',
+          height: '4px',
           borderRadius: '50%',
-          backgroundColor: 'var(--color-secondary)',
+          backgroundColor: '#1A1A1A',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9999,
-          mixBlendMode: 'normal',
+          mixBlendMode: 'difference',
         }}
       />
       <div
@@ -73,15 +73,19 @@ export default function CustomCursor() {
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '28px',
-          height: '28px',
+          width: '24px',
+          height: '24px',
           borderRadius: '50%',
-          border: '1.5px solid var(--color-secondary)',
+          border: '1px solid #1A1A1A',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9998,
+          mixBlendMode: 'difference',
         }}
-      />
+      >
+        <div style={{ position: 'absolute', top: '50%', left: '-4px', width: '32px', height: '1px', background: '#1A1A1A' }} />
+        <div style={{ position: 'absolute', left: '50%', top: '-4px', height: '32px', width: '1px', background: '#1A1A1A' }} />
+      </div>
     </>
   );
 }

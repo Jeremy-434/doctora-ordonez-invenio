@@ -10,15 +10,19 @@ interface Props {
 const { title, subtitle, align = 'center' } = Astro.props;
 ---
 
-<div class={`mb-12 ${align === 'center' ? 'text-center' : ''}`}>
-  <h2 class="text-2xl md:text-4xl font-bold text-text mb-4" data-animate="section-title">{title}</h2>
+<div class={`mb-16 ${align === 'center' ? 'text-center' : ''}`}>
   {
     subtitle && (
-      <p class="text-text-muted text-lg max-w-2xl mx-auto" data-animate="section-subtitle">
-        {subtitle}
-      </p>
+      <div class="overflow-hidden mb-6">
+        <p class="label-caps text-text-muted" data-animate="section-subtitle">
+          {subtitle}
+        </p>
+      </div>
     )
   }
+  <div class="overflow-hidden">
+    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-text tracking-tight" data-animate="section-title">{title}</h2>
+  </div>
 </div>
 
 <script>
@@ -30,14 +34,20 @@ const { title, subtitle, align = 'center' } = Astro.props;
   if (!prefersReduced) {
     document.querySelectorAll('[data-animate="section-title"]').forEach(el => {
       gsap.from(el, {
-        y: 30, opacity: 0, duration: 0.7,
+        clipPath: 'inset(100% 0 0 0)',
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        ease: 'power3.out',
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });
 
     document.querySelectorAll('[data-animate="section-subtitle"]').forEach(el => {
       gsap.from(el, {
-        y: 20, opacity: 0, duration: 0.6, delay: 0.15,
+        opacity: 0,
+        duration: 0.8,
+        delay: 0.2,
         scrollTrigger: { trigger: el, start: 'top 85%', once: true },
       });
     });

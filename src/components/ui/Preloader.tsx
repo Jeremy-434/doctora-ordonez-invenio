@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 
 export default function Preloader() {
   const el = useRef<HTMLDivElement>(null);
+  const textContainer = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -12,11 +13,30 @@ export default function Preloader() {
         if (el.current) el.current.style.display = 'none';
         return;
       }
-      gsap.to(el.current, {
-        opacity: 0, duration: 0.5, delay: 0.6,
+      
+      const tl = gsap.timeline({
         onComplete: () => {
           if (el.current) el.current.style.display = 'none';
-        },
+        }
+      });
+
+      tl.from(textContainer.current, {
+        opacity: 0,
+        y: 20,
+        duration: 0.8,
+        ease: 'power2.out',
+      })
+      .to(textContainer.current, {
+        opacity: 0,
+        y: -20,
+        duration: 0.6,
+        delay: 0.5,
+        ease: 'power2.in',
+      })
+      .to(el.current, {
+        y: '-100%',
+        duration: 0.8,
+        ease: 'power3.inOut',
       });
     });
   }, []);
@@ -33,14 +53,17 @@ export default function Preloader() {
       }}
       aria-hidden="true"
     >
-      <div style={{
-        width: '40px', height: '40px',
-        borderRadius: '50%',
-        border: '2px solid var(--color-accent-light)',
-        borderTopColor: 'var(--color-secondary)',
-        animation: 'spin 0.8s linear infinite',
-      }} />
-      <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
+      <div 
+        ref={textContainer}
+        style={{
+          fontFamily: "'Playfair Display', Georgia, serif",
+          fontSize: 'clamp(2rem, 5vw, 4rem)',
+          color: 'var(--color-text)',
+          letterSpacing: '-0.03em',
+        }}
+      >
+        UNIFISIO
+      </div>
     </div>
   );
 }

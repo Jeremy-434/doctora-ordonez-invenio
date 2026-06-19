@@ -3,36 +3,23 @@ interface Props {
   title: string;
   body: string;
   icon?: string;
-  topAccent?: boolean;
+  topAccent?: boolean; // Kept for interface compatibility but ignored
 }
 
-const { title, body, icon, topAccent = false } = Astro.props;
+const { title, body, icon } = Astro.props;
 ---
 
 <div
-  class={`bg-surface rounded-xl shadow-sm hover:shadow-md transition p-6 ${topAccent ? 'border-t-4 border-primary' : ''}`}
+  class="bg-surface border border-border-light hover:border-border transition-colors duration-300 p-8 h-full flex flex-col"
   data-animate="service-card"
-  data-card
 >
   {
     icon && (
-      <div class="text-4xl mb-4">
+      <div class="text-4xl mb-6 font-display text-text-faint">
         {icon}
       </div>
     )
   }
-  <h3 class="text-xl font-semibold text-text mb-3">{title}</h3>
+  <h3 class="text-xl font-display font-semibold text-text mb-4 mt-auto">{title}</h3>
   <p class="text-text-muted leading-relaxed">{body}</p>
 </div>
-
-<style>
-  @media (hover: hover) {
-    [data-card] {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    [data-card]:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-md);
-    }
-  }
-</style>
