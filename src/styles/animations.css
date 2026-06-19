@@ -1,0 +1,27 @@
+/* Initial states — JS removes these once GSAP takes over */
+[data-animate] {
+  will-change: transform, opacity;
+}
+
+/* Hide animated elements before GSAP runs to prevent FOUC */
+.js-animate-hidden {
+  opacity: 0;
+}
+
+/* Reduced motion: skip all transitions */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  .js-animate-hidden {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Smooth cursor blend */
+* {
+  cursor: none;
+}
+@media (hover: none) {
+  * { cursor: auto; }
+}

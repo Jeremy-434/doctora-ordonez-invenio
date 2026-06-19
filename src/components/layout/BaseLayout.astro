@@ -1,6 +1,11 @@
 ---
 import { siteConfig } from '../../config/site';
 import '../../styles/tokens.css';
+import '../../styles/animations.css';
+import CustomCursor from '../ui/CustomCursor';
+import Preloader from '../ui/Preloader';
+import ScrollProgress from '../ui/ScrollProgress';
+import SmoothScroll from '../ui/SmoothScroll';
 
 interface Props {
   title?: string;
@@ -30,7 +35,11 @@ const { title = siteConfig.seo.title, description = siteConfig.seo.description, 
     <link rel="canonical" href={siteConfig.seo.canonicalUrl} />
   </head>
   <body>
+    <Preloader client:only="react" />
     <slot />
+    <ScrollProgress client:only="react" />
+    <SmoothScroll client:only="react" />
+    <CustomCursor client:only="react" />
   </body>
 </html>
 

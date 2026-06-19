@@ -23,13 +23,13 @@ const { title, subtitle, steps } = Astro.props;
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
       {
         steps.map((step, index) => (
-          <div class="relative">
+          <div class="relative" data-animate="step">
             <div class="text-6xl font-bold text-secondary mb-4">{step.number}</div>
             <h3 class="text-2xl font-semibold text-primary mb-3">{step.title}</h3>
             <p class="text-gray-700 leading-relaxed">{step.description}</p>
 
             {index < steps.length - 1 && (
-              <div class="hidden md:block absolute top-12 -right-6 w-12 h-1 bg-secondary"></div>
+              <div class="hidden md:block absolute top-12 -right-6 w-12 h-1 bg-secondary" data-animate="process-line"></div>
             )}
           </div>
         ))
@@ -37,3 +37,28 @@ const { title, subtitle, steps } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    // Draw connecting line
+    gsap.from('[data-animate="process-line"]', {
+      scaleX: 0,
+      transformOrigin: 'left center',
+      duration: 1.2,
+      ease: 'power2.inOut',
+      scrollTrigger: { trigger: '[data-animate="process-line"]', start: 'top 75%', once: true },
+    });
+
+    // Steps pop in sequence
+    gsap.from('[data-animate="step"]', {
+      y: 40, opacity: 0, duration: 0.6,
+      stagger: 0.2,
+      scrollTrigger: { trigger: '[data-animate="step"]', start: 'top 80%', once: true },
+    });
+  }
+</script>

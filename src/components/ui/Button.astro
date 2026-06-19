@@ -64,4 +64,17 @@ const Tag = href ? 'a' : 'button';
     outline: 2px solid var(--color-primary);
     outline-offset: 2px;
   }
+
+  @media (hover: hover) {
+    button, a, [data-btn] {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    button:hover, a:hover, [data-btn]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 191, 216, 0.25);
+    }
+    button:active, a:active, [data-btn]:active {
+      transform: translateY(0);
+    }
+  }
 </style>

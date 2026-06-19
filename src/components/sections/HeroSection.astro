@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import AmbientBackground from '../ui/AmbientBackground';
 
 interface Props {
   headline: string;
@@ -14,6 +15,7 @@ const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.
 ---
 
 <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  <AmbientBackground client:only="react" />
   <div
     class="absolute inset-0 bg-cover bg-center"
     style={`background-image: url('${image}'); background-position: center;`}
@@ -23,20 +25,20 @@ const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.
   <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-75"></div>
 
   <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24">
-    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" data-animate="headline">
       {headline}
     </h1>
 
-    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed" data-animate="subheadline">
       {subheadline}
     </p>
 
-    <div class="flex flex-col sm:flex-row gap-4 mb-12">
-      <Button variant="secondary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+    <div class="flex flex-col sm:flex-row gap-4 mb-12" data-animate="ctas">
+      <Button variant="secondary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" data-magnetic />
       <Button variant="ghost" size="lg" text={ctaSecondary} onClick="document.getElementById('servicios')?.scrollIntoView({behavior:'smooth'})" class="text-white border-white hover:bg-white/10" />
     </div>
 
-    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-white/80 text-sm">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-white/80 text-sm" data-animate="trust">
       {
         trust.map((item, index) => (
           <>
@@ -54,3 +56,42 @@ const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.
     background-attachment: fixed;
   }
 </style>
+
+<script>
+  import { gsap } from 'gsap';
+  import { splitAndReveal } from '@/lib/animations';
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+
+    const headline = document.querySelector('[data-animate="headline"]');
+    const subheadline = document.querySelector('[data-animate="subheadline"]');
+    const ctas = document.querySelector('[data-animate="ctas"]');
+    const trust = document.querySelector('[data-animate="trust"]');
+
+    const tl = gsap.timeline({ delay: 0.2 });
+
+    // Headline: words slide up one by one
+    if (headline) splitAndReveal(headline);
+
+    // Subheadline: fade up after headline
+    if (subheadline) {
+      tl.from(subheadline, { y: 25, opacity: 0, duration: 0.7, ease: 'power2.out' }, 0.5);
+    }
+
+    // CTA buttons: spring up
+    if (ctas) {
+      tl.from(ctas.children, {
+        y: 20, opacity: 0, duration: 0.5, stagger: 0.1, ease: 'back.out(1.5)',
+      }, 0.8);
+    }
+
+    // Trust bar items: fade in staggered
+    if (trust) {
+      tl.from(trust.children, {
+        opacity: 0, y: 10, duration: 0.4, stagger: 0.08,
+      }, 1.1);
+    }
+  });
+</script>

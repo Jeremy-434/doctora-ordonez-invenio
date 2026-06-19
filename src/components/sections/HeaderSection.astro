@@ -44,4 +44,24 @@ const { logo, navLinks } = Astro.props;
     outline: 2px solid var(--color-primary);
     outline-offset: 4px;
   }
+
+  @media (hover: hover) {
+    nav a {
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -2px;
+      width: 100%; height: 1.5px;
+      background: var(--color-secondary);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+  }
 </style>

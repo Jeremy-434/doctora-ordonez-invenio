@@ -16,8 +16,8 @@ const { stats } = Astro.props;
     <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
       {
         stats.map((stat) => (
-          <div class="text-center">
-            <div class="text-3xl md:text-5xl font-bold mb-2">{stat.value}</div>
+          <div class="text-center" data-animate="stat">
+            <div class="text-3xl md:text-5xl font-bold mb-2" data-stat-value>{stat.value}</div>
             <p class="text-white/80 text-sm md:text-base">{stat.label}</p>
           </div>
         ))
@@ -25,3 +25,42 @@ const { stats } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('[data-animate="stat"]').forEach(stat => {
+    const valueEl = stat.querySelector('[data-stat-value]');
+    if (!valueEl) return;
+
+    const raw = valueEl.textContent ?? '';
+    // Extract numeric part (handles "+500", "98%", "10+")
+    const prefix = raw.match(/^[^0-9]*/)?.[0] ?? '';
+    const suffix = raw.match(/[^0-9]*$/)?.[0] ?? '';
+    const num = parseInt(raw.replace(/\D/g, ''), 10);
+
+    if (!prefersReduced && !isNaN(num)) {
+      const obj = { val: 0 };
+      gsap.to(obj, {
+        val: num,
+        duration: 1.8,
+        ease: 'power1.out',
+        onUpdate: () => {
+          valueEl.textContent = prefix + Math.round(obj.val) + suffix;
+        },
+        scrollTrigger: { trigger: stat, start: 'top 85%', once: true },
+      });
+    }
+
+    if (!prefersReduced) {
+      gsap.from(stat, {
+        y: 30, opacity: 0, duration: 0.6,
+        scrollTrigger: { trigger: stat, start: 'top 85%', once: true },
+      });
+    }
+  });
+</script>

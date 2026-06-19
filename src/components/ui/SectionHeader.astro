@@ -11,12 +11,35 @@ const { title, subtitle, align = 'center' } = Astro.props;
 ---
 
 <div class={`mb-12 ${align === 'center' ? 'text-center' : ''}`}>
-  <h2 class="text-2xl md:text-4xl font-bold text-primary mb-4">{title}</h2>
+  <h2 class="text-2xl md:text-4xl font-bold text-primary mb-4" data-animate="section-title">{title}</h2>
   {
     subtitle && (
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+      <p class="text-gray-600 text-lg max-w-2xl mx-auto" data-animate="section-subtitle">
         {subtitle}
       </p>
     )
   }
 </div>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    document.querySelectorAll('[data-animate="section-title"]').forEach(el => {
+      gsap.from(el, {
+        y: 30, opacity: 0, duration: 0.7,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
+    });
+
+    document.querySelectorAll('[data-animate="section-subtitle"]').forEach(el => {
+      gsap.from(el, {
+        y: 20, opacity: 0, duration: 0.6, delay: 0.15,
+        scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+      });
+    });
+  }
+</script>
