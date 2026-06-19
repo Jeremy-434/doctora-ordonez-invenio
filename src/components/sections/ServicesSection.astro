@@ -1,0 +1,32 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+import Card from '../ui/Card.astro';
+
+interface Service {
+  title: string;
+  icon: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  services: Service[];
+}
+
+const { title, subtitle, services } = Astro.props;
+---
+
+<section id="servicios" class="bg-white py-16 md:py-24">
+  <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+    <SectionHeader title={title} subtitle={subtitle} align="center" />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map((service) => (
+          <Card title={service.title} body={service.description} icon={service.icon} topAccent={true} />
+        ))
+      }
+    </div>
+  </div>
+</section>

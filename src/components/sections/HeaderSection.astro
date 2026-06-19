@@ -1,0 +1,47 @@
+---
+import Button from '../ui/Button.astro';
+import MobileNav from '../layout/MobileNav';
+
+interface Props {
+  logo: string;
+  navLinks: string[];
+}
+
+const { logo, navLinks } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 bg-white border-b border-gray-100">
+  <nav class="flex items-center justify-between px-4 md:px-8 lg:px-16 xl:px-24 py-4">
+    <div class="flex items-center">
+      <img src={logo} alt="Unifisio" class="h-10" />
+    </div>
+
+    <div class="hidden md:flex items-center gap-8">
+      {
+        navLinks.slice(0, -1).map((link) => (
+          <a
+            href={link === 'Servicios' ? '#servicios' : link === 'Proceso' ? '#proceso' : '#testimonios'}
+            class="text-primary font-medium hover:text-secondary transition"
+          >
+            {link}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="hidden md:flex items-center gap-4">
+      <Button variant="secondary" size="md" text="Agendá tu turno" onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+    </div>
+
+    <div class="md:hidden">
+      <MobileNav client:only="react" navLinks={navLinks} />
+    </div>
+  </nav>
+</header>
+
+<style>
+  a:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+  }
+</style>

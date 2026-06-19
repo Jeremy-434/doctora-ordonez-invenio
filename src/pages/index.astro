@@ -1,0 +1,66 @@
+---
+import { siteConfig } from '../config/site';
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import HeaderSection from '../components/sections/HeaderSection.astro';
+import HeroSection from '../components/sections/HeroSection.astro';
+import StatsSection from '../components/sections/StatsSection.astro';
+import ServicesSection from '../components/sections/ServicesSection.astro';
+import ProcessSection from '../components/sections/ProcessSection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import CTABannerSection from '../components/sections/CTABannerSection.astro';
+import CalendarSection from '../components/sections/CalendarSection.astro';
+import FooterSection from '../components/sections/FooterSection.astro';
+---
+
+<BaseLayout
+  title={siteConfig.seo.title}
+  description={siteConfig.seo.description}
+  ogImage={siteConfig.seo.ogImage}
+>
+  <HeaderSection logo={siteConfig.brand.logo} navLinks={siteConfig.footer.navLinks} />
+
+  <HeroSection
+    headline={siteConfig.hero.headline}
+    subheadline={siteConfig.hero.subheadline}
+    image={siteConfig.hero.image}
+    ctaPrimary={siteConfig.hero.ctaPrimary}
+    ctaSecondary={siteConfig.hero.ctaSecondary}
+    trust={siteConfig.hero.trust}
+  />
+
+  <StatsSection stats={siteConfig.stats} />
+
+  <ServicesSection
+    title="Nuestros tratamientos"
+    subtitle="Abordajes personalizados para cada etapa de tu recuperación"
+    services={siteConfig.services}
+  />
+
+  <ProcessSection
+    title="¿Cómo funciona?"
+    subtitle="En tres pasos simples estás en camino a recuperarte"
+    steps={siteConfig.process}
+  />
+
+  <TestimonialsSection title="Lo que dicen nuestros pacientes" testimonials={siteConfig.testimonials} />
+
+  <CTABannerSection
+    headline={siteConfig.cta.headline}
+    subtext={siteConfig.cta.subtext}
+    buttonText={siteConfig.cta.button}
+    whatsapp={siteConfig.whatsapp}
+  />
+
+  <CalendarSection
+    title="Agendá tu turno"
+    subtitle="Elegí el horario que mejor se adapte a vos. Primera consulta sin cargo."
+    calendarUrl={`${siteConfig.calendarBaseUrl}${siteConfig.ghlCalendarId}`}
+  />
+
+  <FooterSection
+    logo={siteConfig.brand.logo}
+    tagline={siteConfig.footer.tagline}
+    navLinks={siteConfig.footer.navLinks}
+    copyright={siteConfig.footer.copyright}
+  />
+</BaseLayout>

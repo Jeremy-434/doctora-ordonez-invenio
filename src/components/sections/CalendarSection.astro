@@ -1,0 +1,27 @@
+---
+import SectionHeader from '../ui/SectionHeader.astro';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  calendarUrl: string;
+}
+
+const { title, subtitle, calendarUrl } = Astro.props;
+---
+
+<section id="calendar" class="bg-accent-light py-16 md:py-24">
+  <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
+    <SectionHeader title={title} subtitle={subtitle} align="center" />
+
+    <div class="w-full max-w-4xl mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+      <iframe
+        src={calendarUrl}
+        style="width:100%;min-height:700px;border:none;overflow:hidden;"
+        scrolling="no"
+        title="Reservar turno con Unifisio"
+      >
+      </iframe>
+    </div>
+  </div>
+</section>

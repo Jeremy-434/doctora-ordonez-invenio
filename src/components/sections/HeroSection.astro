@@ -1,0 +1,56 @@
+---
+import Button from '../ui/Button.astro';
+
+interface Props {
+  headline: string;
+  subheadline: string;
+  image: string;
+  ctaPrimary: string;
+  ctaSecondary: string;
+  trust: string[];
+}
+
+const { headline, subheadline, image, ctaPrimary, ctaSecondary, trust } = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+  <div
+    class="absolute inset-0 bg-cover bg-center"
+    style={`background-image: url('${image}'); background-position: center;`}
+  >
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-primary via-primary/50 to-transparent opacity-75"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24">
+    <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+      {headline}
+    </h1>
+
+    <p class="text-lg md:text-xl text-white/90 mb-8 max-w-2xl leading-relaxed">
+      {subheadline}
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 mb-12">
+      <Button variant="secondary" size="lg" text={ctaPrimary} onClick="document.getElementById('calendar')?.scrollIntoView({behavior:'smooth'})" />
+      <Button variant="ghost" size="lg" text={ctaSecondary} onClick="document.getElementById('servicios')?.scrollIntoView({behavior:'smooth'})" class="text-white border-white hover:bg-white/10" />
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-white/80 text-sm">
+      {
+        trust.map((item, index) => (
+          <>
+            <span>{item}</span>
+            {index < trust.length - 1 && <span class="hidden sm:inline">·</span>}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background-attachment: fixed;
+  }
+</style>
