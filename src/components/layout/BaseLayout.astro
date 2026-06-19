@@ -6,6 +6,7 @@ import CustomCursor from '../ui/CustomCursor';
 import Preloader from '../ui/Preloader';
 import ScrollProgress from '../ui/ScrollProgress';
 import SmoothScroll from '../ui/SmoothScroll';
+import SceneCanvas from '../ui/SceneCanvas';
 
 interface Props {
   title?: string;
@@ -32,9 +33,16 @@ const { title = siteConfig.seo.title, description = siteConfig.seo.description, 
     <link rel="canonical" href={siteConfig.seo.canonicalUrl} />
   </head>
   <body>
+    <!-- Persistent Grid overlay -->
     <div id="page-grid"></div>
+
+    <!-- Persistent 3D Canvas Background -->
+    <SceneCanvas client:only="react" />
+
     <Preloader client:only="react" />
-    <slot />
+    <main class="relative z-10">
+      <slot />
+    </main>
     <ScrollProgress client:only="react" />
     <SmoothScroll client:only="react" />
     <CustomCursor client:only="react" />
