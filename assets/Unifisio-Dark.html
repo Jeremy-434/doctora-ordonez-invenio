@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #07111D; font-family: Inter, sans-serif; -webkit-font-smoothing: antialiased; }
+  @keyframes drift { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(20px,-24px) scale(1.08); } }
+  ::selection { background: #00C9E4; color: #07111D; }
+  pre { tab-size: 2; }
+</style>
+</helmet>
+
+<div style="position:relative; min-height:100vh; background:#07111D; color:#DCF0F8; overflow:hidden; padding:0 0 120px;">
+
+  <!-- ambient glow orbs -->
+  <div style="position:absolute; top:-180px; right:-120px; width:620px; height:620px; border-radius:50%; background:radial-gradient(circle, rgba(11,94,138,0.55) 0%, rgba(0,201,228,0.10) 38%, transparent 70%); filter:blur(40px); pointer-events:none; animation:drift 18s ease-in-out infinite;"></div>
+  <div style="position:absolute; top:1200px; left:-200px; width:560px; height:560px; border-radius:50%; background:radial-gradient(circle, rgba(0,201,228,0.16) 0%, rgba(11,94,138,0.10) 45%, transparent 72%); filter:blur(48px); pointer-events:none; animation:drift 22s ease-in-out infinite reverse;"></div>
+
+  <div style="position:relative; max-width:1040px; margin:0 auto; padding:0 32px;">
+
+    <!-- ░░ HEADER ░░ -->
+    <header style="padding:96px 0 56px; border-bottom:1px solid #1A3448;">
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:28px;">
+        <div style="width:30px; height:30px; border-radius:8px; background:linear-gradient(135deg,#00C9E4,#0B5E8A); box-shadow:0 0 24px rgba(0,201,228,0.45);"></div>
+        <span style="font-size:14px; font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:#6B9BB5;">Unifisio</span>
+        <span style="font-size:12px; font-weight:500; letter-spacing:0.08em; color:#00C9E4; border:1px solid rgba(0,201,228,0.3); border-radius:999px; padding:4px 12px; background:rgba(0,201,228,0.06);">Dark&nbsp;mode&nbsp;first</span>
+      </div>
+      <h1 style="font-size:62px; font-weight:800; line-height:1.02; letter-spacing:-0.03em; max-width:18ch; text-wrap:balance;">Design Token System</h1>
+      <p style="margin-top:22px; font-size:19px; line-height:1.6; color:#6B9BB5; max-width:62ch; text-wrap:pretty;">A dark-mode-first palette for a kinesiology &amp; physiotherapy clinic. Deep ocean navy surfaces, cyan that reads like light through water, and glows in place of drop shadows. Every value is production-ready and audited for WCAG AA.</p>
+    </header>
+
+    <!-- ░░ COLOR ANALYSIS ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">01 — The reasoning</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Two brand colors, on deep navy</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:16px; padding:28px; box-shadow:0 0 0 1px rgba(0,201,228,0.08), 0 2px 8px rgba(0,0,0,0.3);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <div style="width:48px; height:48px; border-radius:12px; background:#0B5E8A;"></div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:500;">#0B5E8A</div>
+              <div style="font-size:13px; color:#6B9BB5;">Logo blue</div>
+            </div>
+          </div>
+          <p style="font-size:15px; line-height:1.6; color:#6B9BB5; margin-bottom:14px;">On <span style="font-family:'JetBrains Mono',monospace; color:#DCF0F8;">#07111D</span> it lands near <strong style="color:#DCF0F8;">2.0:1</strong> — barely separable from the background. Unusable for text or buttons.</p>
+          <div style="display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#F59E0B; background:rgba(245,158,11,0.1); border-radius:999px; padding:6px 14px;">→ Demoted to ambient glow only</div>
+        </div>
+
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:16px; padding:28px; box-shadow:0 0 0 1px rgba(0,201,228,0.14), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(0,201,228,0.08);">
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px;">
+            <div style="width:48px; height:48px; border-radius:12px; background:#00C9E4; box-shadow:0 0 24px rgba(0,201,228,0.5);"></div>
+            <div>
+              <div style="font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:500;">#00C9E4</div>
+              <div style="font-size:13px; color:#6B9BB5;">Brand cyan</div>
+            </div>
+          </div>
+          <p style="font-size:15px; line-height:1.6; color:#6B9BB5; margin-bottom:14px;">On <span style="font-family:'JetBrains Mono',monospace; color:#DCF0F8;">#07111D</span> it hits <strong style="color:#DCF0F8;">9.5:1</strong> — it glows against the deep navy and stays crisp at small sizes.</p>
+          <div style="display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:600; color:#34D399; background:rgba(52,211,153,0.1); border-radius:999px; padding:6px 14px;">→ Promoted to PRIMARY accent</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ░░ BACKGROUNDS ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">02 — Layer A</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Background depths</h2>
+      <p style="font-size:16px; color:#6B9BB5; margin-bottom:28px; max-width:60ch;">Four navy depths, each hued toward the logo blue — never neutral gray, never pure black.</p>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <div style="border:1px solid #1A3448; border-radius:14px; overflow:hidden;">
+          <div style="height:96px; background:#07111D;"></div>
+          <div style="padding:14px 16px; background:#0C1B2B; border-top:1px solid #1A3448;">
+            <div style="font-size:14px; font-weight:600;">--color-bg</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#07111D</div>
+            <div style="font-size:12px; color:#3E6985; margin-top:6px;">Deepest layer · body</div>
+          </div>
+        </div>
+        <div style="border:1px solid #1A3448; border-radius:14px; overflow:hidden;">
+          <div style="height:96px; background:#0C1B2B;"></div>
+          <div style="padding:14px 16px; background:#0C1B2B; border-top:1px solid #1A3448;">
+            <div style="font-size:14px; font-weight:600;">--color-surface</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#0C1B2B</div>
+            <div style="font-size:12px; color:#3E6985; margin-top:6px;">Cards · sections</div>
+          </div>
+        </div>
+        <div style="border:1px solid #1A3448; border-radius:14px; overflow:hidden;">
+          <div style="height:96px; background:#112438;"></div>
+          <div style="padding:14px 16px; background:#0C1B2B; border-top:1px solid #1A3448;">
+            <div style="font-size:14px; font-weight:600;">--surface-raised</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#112438</div>
+            <div style="font-size:12px; color:#3E6985; margin-top:6px;">Header · process</div>
+          </div>
+        </div>
+        <div style="border:1px solid #1A3448; border-radius:14px; overflow:hidden;">
+          <div style="height:96px; background:#1A3448;"></div>
+          <div style="padding:14px 16px; background:#0C1B2B; border-top:1px solid #1A3448;">
+            <div style="font-size:14px; font-weight:600;">--color-border</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#1A3448</div>
+            <div style="font-size:12px; color:#3E6985; margin-top:6px;">Dividers · edges</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ BRAND ACCENTS ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">03 — Layer B</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Brand accents</h2>
+      <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:16px;">
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:20px;">
+          <div style="height:64px; border-radius:10px; background:#00C9E4; box-shadow:0 0 28px rgba(0,201,228,0.4); margin-bottom:16px;"></div>
+          <div style="font-size:14px; font-weight:600;">--color-primary</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#00C9E4</div>
+          <div style="font-size:12px; color:#3E6985; margin-top:6px;">CTAs, links, accents</div>
+        </div>
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:20px;">
+          <div style="height:64px; border-radius:10px; background:#007E91; margin-bottom:16px;"></div>
+          <div style="font-size:14px; font-weight:600;">--primary-dim</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#007E91</div>
+          <div style="font-size:12px; color:#3E6985; margin-top:6px;">Chip fills, subtle</div>
+        </div>
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:20px;">
+          <div style="height:64px; border-radius:10px; background:#38BDF8; margin-bottom:16px;"></div>
+          <div style="font-size:14px; font-weight:600;">--color-secondary</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#38BDF8</div>
+          <div style="font-size:12px; color:#3E6985; margin-top:6px;">Sky variant</div>
+        </div>
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:20px;">
+          <div style="height:64px; border-radius:10px; background:#0B5E8A; margin-bottom:16px;"></div>
+          <div style="font-size:14px; font-weight:600;">--color-deep</div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; margin-top:2px;">#0B5E8A</div>
+          <div style="font-size:12px; color:#3E6985; margin-top:6px;">Glow source only</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ TEXT HIERARCHY ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">04 — Layer C</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Text hierarchy</h2>
+      <p style="font-size:16px; color:#6B9BB5; margin-bottom:28px; max-width:60ch;">Readable on both <span style="font-family:'JetBrains Mono',monospace;">--color-bg</span> and <span style="font-family:'JetBrains Mono',monospace;">--color-surface</span>. Warm near-white with a blue tint — never pure white.</p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:#07111D; border:1px solid #1A3448; border-radius:14px; padding:28px;">
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#3E6985; margin-bottom:18px;">On --color-bg</div>
+          <div style="font-size:22px; font-weight:600; color:#DCF0F8; margin-bottom:10px;">Primary text · #DCF0F8</div>
+          <div style="font-size:17px; color:#6B9BB5; margin-bottom:10px;">Muted text for labels · #6B9BB5</div>
+          <div style="font-size:15px; color:#3E6985;">Faint, low-emphasis · #3E6985</div>
+        </div>
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:28px;">
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:#3E6985; margin-bottom:18px;">On --color-surface</div>
+          <div style="font-size:22px; font-weight:600; color:#DCF0F8; margin-bottom:10px;">Primary text · #DCF0F8</div>
+          <div style="font-size:17px; color:#6B9BB5; margin-bottom:10px;">Muted text for labels · #6B9BB5</div>
+          <div style="font-size:15px; color:#3E6985;">Faint, low-emphasis · #3E6985</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ SEMANTIC ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">05 — Layer D</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Semantic colors</h2>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:24px; display:flex; align-items:center; gap:18px;">
+          <div style="font-size:30px; color:#F59E0B; letter-spacing:2px;">★★★★★</div>
+          <div>
+            <div style="font-size:15px; font-weight:600;">--color-gold</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5;">#F59E0B · testimonial stars</div>
+          </div>
+        </div>
+        <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:14px; padding:24px; display:flex; align-items:center; gap:18px;">
+          <div style="display:flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:50%; background:rgba(52,211,153,0.14); color:#34D399; font-size:20px; font-weight:700;">✓</div>
+          <div>
+            <div style="font-size:15px; font-weight:600;">--color-success</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5;">#34D399 · trust checkmarks</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ GLOW SHADOWS ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">06 — Layer E</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:8px;">Glow shadows</h2>
+      <p style="font-size:16px; color:#6B9BB5; margin-bottom:32px; max-width:60ch;">Dark surfaces breathe with a faint cyan edge instead of black drop shadows.</p>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; padding:8px 0 24px;">
+        <div style="background:#0C1B2B; border-radius:16px; padding:28px; min-height:150px; box-shadow:0 0 0 1px rgba(0,201,228,0.08), 0 2px 8px rgba(0,0,0,0.3);">
+          <div style="font-size:16px; font-weight:600; margin-bottom:6px;">--shadow-sm</div>
+          <div style="font-size:13px; color:#6B9BB5;">Card at rest. Subtle presence.</div>
+        </div>
+        <div style="background:#0C1B2B; border-radius:16px; padding:28px; min-height:150px; box-shadow:0 0 0 1px rgba(0,201,228,0.14), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(0,201,228,0.08);">
+          <div style="font-size:16px; font-weight:600; margin-bottom:6px;">--shadow-md</div>
+          <div style="font-size:13px; color:#6B9BB5;">On hover. Lifts with a cyan edge.</div>
+        </div>
+        <div style="background:#0C1B2B; border-radius:16px; padding:28px; min-height:150px; box-shadow:0 0 0 1px rgba(0,201,228,0.1), 0 16px 64px rgba(0,0,0,0.5), 0 0 80px rgba(0,201,228,0.06);">
+          <div style="font-size:16px; font-weight:600; margin-bottom:6px;">--shadow-lg</div>
+          <div style="font-size:13px; color:#6B9BB5;">Section ambient. Large feature glow.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ░░ HERO GRADIENT ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">07 — Composition</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Hero gradient overlay</h2>
+      <div style="position:relative; height:300px; border-radius:18px; overflow:hidden; border:1px solid #1A3448;">
+        <!-- faux photo: striped placeholder -->
+        <div style="position:absolute; inset:0; background:repeating-linear-gradient(135deg,#143a52 0 22px,#0f2d42 22px 44px);"></div>
+        <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5;">[ hero photo ]</div>
+        <div style="position:absolute; inset:0; background:linear-gradient(to right, #07111DF0 0%, #07111DCC 35%, #07111D66 65%, transparent 100%);"></div>
+        <div style="position:absolute; inset:0; display:flex; flex-direction:column; justify-content:center; padding:0 48px;">
+          <div style="font-size:14px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; color:#00C9E4; margin-bottom:14px;">Recuperación que fluye</div>
+          <h3 style="font-size:38px; font-weight:800; line-height:1.05; letter-spacing:-0.02em; max-width:14ch;">Volvé a moverte sin dolor</h3>
+        </div>
+      </div>
+      <div style="margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:13px; color:#6B9BB5; background:#0C1B2B; border:1px solid #1A3448; border-radius:10px; padding:14px 18px; overflow-x:auto;">--hero-gradient: linear-gradient(to right, #07111DF0 0%, #07111DCC 35%, #07111D66 65%, transparent 100%);</div>
+    </section>
+
+    <!-- ░░ USAGE MAP ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">08 — Application</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Semantic usage map</h2>
+      <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:16px; overflow:hidden;">
+        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+          <thead>
+            <tr style="background:#112438;">
+              <th style="text-align:left; padding:14px 18px; font-weight:600; color:#DCF0F8; border-bottom:1px solid #1A3448;">Section</th>
+              <th style="text-align:left; padding:14px 18px; font-weight:600; color:#DCF0F8; border-bottom:1px solid #1A3448;">Background</th>
+              <th style="text-align:left; padding:14px 18px; font-weight:600; color:#DCF0F8; border-bottom:1px solid #1A3448;">Accent</th>
+              <th style="text-align:left; padding:14px 18px; font-weight:600; color:#DCF0F8; border-bottom:1px solid #1A3448;">Border</th>
+            </tr>
+          </thead>
+          <tbody style="font-family:'JetBrains Mono',monospace; color:#6B9BB5;">
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Page body</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-bg</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Header (sticky)</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface-raised + blur</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">--color-primary</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-border</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Hero</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-bg</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">--color-primary</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Stats bar</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface → raised grad</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">--color-primary</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">1px border y</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Service cards</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-surface</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">primary 4px top</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-border</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Process</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface-raised</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">primary (gradient #)</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Testimonials</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-surface</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">primary (left bar)</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-border</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">CTA banner</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface → bg grad</td><td style="padding:12px 18px; color:#00C9E4; border-bottom:1px solid #1A3448;">primary (button)</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">primary @20%</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif; border-bottom:1px solid #1A3448;">Calendar</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">--color-bg</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">—</td></tr>
+            <tr><td style="padding:12px 18px; color:#DCF0F8; font-family:Inter,sans-serif;">Footer</td><td style="padding:12px 18px;">--color-surface</td><td style="padding:12px 18px; color:#00C9E4;">primary (hover)</td><td style="padding:12px 18px;">border (top)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ░░ CONTRAST AUDIT ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">09 — Verification</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:10px;">Contrast audit · WCAG AA</h2>
+      <p style="font-size:16px; color:#6B9BB5; margin-bottom:28px; max-width:64ch;">Ratios computed from relative luminance. AA needs ≥4.5:1 for body text, ≥3:1 for large text &amp; UI.</p>
+      <div style="background:#0C1B2B; border:1px solid #1A3448; border-radius:16px; overflow:hidden;">
+        <table style="width:100%; border-collapse:collapse; font-size:14px;">
+          <thead>
+            <tr style="background:#112438;">
+              <th style="text-align:left; padding:14px 18px; font-weight:600; border-bottom:1px solid #1A3448;">Foreground</th>
+              <th style="text-align:left; padding:14px 18px; font-weight:600; border-bottom:1px solid #1A3448;">Background</th>
+              <th style="text-align:right; padding:14px 18px; font-weight:600; border-bottom:1px solid #1A3448;">Ratio</th>
+              <th style="text-align:right; padding:14px 18px; font-weight:600; border-bottom:1px solid #1A3448;">Result</th>
+            </tr>
+          </thead>
+          <tbody style="font-family:'JetBrains Mono',monospace; color:#6B9BB5;">
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">text #DCF0F8</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">bg #07111D</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">16.1:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">text #DCF0F8</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface #0C1B2B</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">14.8:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">primary #00C9E4</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">bg #07111D</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">9.5:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">primary #00C9E4</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface #0C1B2B</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">8.7:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">text-muted #6B9BB5</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface #0C1B2B</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">5.8:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">gold #F59E0B</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface #0C1B2B</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">8.1:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">success #34D399</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">surface #0C1B2B</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8; border-bottom:1px solid #1A3448;">9.0:1</td><td style="padding:12px 18px; text-align:right; color:#34D399; border-bottom:1px solid #1A3448;">AAA</td></tr>
+            <tr style="background:rgba(245,158,11,0.06);"><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">white #FFFFFF</td><td style="padding:12px 18px; border-bottom:1px solid #1A3448;">primary #00C9E4</td><td style="padding:12px 18px; text-align:right; color:#F59E0B; border-bottom:1px solid #1A3448;">2.0:1</td><td style="padding:12px 18px; text-align:right; color:#F59E0B; border-bottom:1px solid #1A3448;">FAIL</td></tr>
+            <tr style="background:rgba(52,211,153,0.06);"><td style="padding:12px 18px;">→ fix: bg #07111D</td><td style="padding:12px 18px;">primary #00C9E4</td><td style="padding:12px 18px; text-align:right; color:#DCF0F8;">9.5:1</td><td style="padding:12px 18px; text-align:right; color:#34D399;">AAA</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:18px; display:flex; gap:16px; background:#0C1B2B; border:1px solid #1A3448; border-left:3px solid #F59E0B; border-radius:12px; padding:20px 24px;">
+        <div style="font-size:20px;">⚠</div>
+        <div style="font-size:15px; line-height:1.6; color:#6B9BB5;"><strong style="color:#DCF0F8;">The brief's white button text fails AA</strong> — pure white on the bright cyan lands at 2.0:1. Primary buttons must use dark ink (<span style="font-family:'JetBrains Mono',monospace; color:#DCF0F8;">--color-bg #07111D</span>, 9.5:1) on the cyan fill. This is reflected in the demo button below.</div>
+      </div>
+      <!-- live button demo -->
+      <div style="margin-top:20px; display:flex; gap:16px; align-items:center; flex-wrap:wrap;">
+        <button style="font-family:Inter,sans-serif; font-size:15px; font-weight:700; color:#07111D; background:#00C9E4; border:none; border-radius:12px; padding:14px 28px; cursor:pointer; box-shadow:0 0 24px rgba(0,201,228,0.35);">Reservar turno →</button>
+        <span style="font-size:13px; color:#34D399; font-family:'JetBrains Mono',monospace;">✓ dark ink, 9.5:1</span>
+      </div>
+    </section>
+
+    <!-- ░░ CODE FILES ░░ -->
+    <section style="padding:64px 0 12px;">
+      <div style="font-size:13px; font-weight:600; letter-spacing:0.18em; text-transform:uppercase; color:#00C9E4; margin-bottom:8px;">10 — Handoff</div>
+      <h2 style="font-size:34px; font-weight:700; letter-spacing:-0.02em; margin-bottom:28px;">Production code · copy-paste ready</h2>
+
+      <!-- FILE 1 -->
+      <div data-code style="background:#0A1622; border:1px solid #1A3448; border-radius:16px; overflow:hidden; margin-bottom:24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 20px; background:#112438; border-bottom:1px solid #1A3448;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#DCF0F8;">src/styles/tokens.css</span>
+          <button onClick="{{ copyCode }}" style="font-family:Inter,sans-serif; font-size:12px; font-weight:600; color:#00C9E4; background:rgba(0,201,228,0.08); border:1px solid rgba(0,201,228,0.3); border-radius:8px; padding:6px 14px; cursor:pointer;">Copy</button>
+        </div>
+        <pre style="margin:0; padding:22px 24px; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; color:#9DC4D6;">/* ─── Unifisio Design Tokens — Dark mode first ─── */
+
+:root {
+  /* Backgrounds */
+  --color-bg: #07111D;
+  --color-surface: #0C1B2B;
+  --color-surface-raised: #112438;
+  --color-border: #1A3448;
+
+  /* Brand */
+  --color-primary: #00C9E4;
+  --color-primary-dim: #007E91;
+  --color-secondary: #38BDF8;
+  --color-deep: #0B5E8A;
+
+  /* Text */
+  --color-text: #DCF0F8;
+  --color-text-muted: #6B9BB5;
+  --color-text-faint: #3E6985;
+
+  /* Semantic */
+  --color-gold: #F59E0B;
+  --color-success: #34D399;
+
+  /* Glows (not drop shadows) */
+  --shadow-sm: 0 0 0 1px rgba(0,201,228,0.08), 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-md: 0 0 0 1px rgba(0,201,228,0.14), 0 8px 32px rgba(0,0,0,0.4), 0 0 24px rgba(0,201,228,0.08);
+  --shadow-lg: 0 0 0 1px rgba(0,201,228,0.1), 0 16px 64px rgba(0,0,0,0.5), 0 0 80px rgba(0,201,228,0.06);
+
+  /* Hero */
+  --hero-gradient: linear-gradient(to right, #07111DF0 0%, #07111DCC 35%, #07111D66 65%, transparent 100%);
+
+  /* Geometry */
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 20px;
+}
+
+[data-theme="light"] {
+  --color-bg: #FFFFFF;
+  --color-surface: #F0F8FC;
+  --color-surface-raised: #FFFFFF;
+  --color-border: #C8DDE9;
+  --color-text: #0A1A25;
+  --color-text-muted: #3D6070;
+  --color-text-faint: #7FA3B5;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.16);
+  --hero-gradient: linear-gradient(to right, #0B5E8ADD 35%, transparent);
+  /* primary, secondary, deep, gold, success stay the same */
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; color-scheme: dark; }
+body { font-family: Inter, sans-serif; color: var(--color-text); background-color: var(--color-bg); }</pre>
+      </div>
+
+      <!-- FILE 2 -->
+      <div data-code style="background:#0A1622; border:1px solid #1A3448; border-radius:16px; overflow:hidden; margin-bottom:24px;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 20px; background:#112438; border-bottom:1px solid #1A3448;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#DCF0F8;">tailwind.config.ts</span>
+          <button onClick="{{ copyCode }}" style="font-family:Inter,sans-serif; font-size:12px; font-weight:600; color:#00C9E4; background:rgba(0,201,228,0.08); border:1px solid rgba(0,201,228,0.3); border-radius:8px; padding:6px 14px; cursor:pointer;">Copy</button>
+        </div>
+        <pre style="margin:0; padding:22px 24px; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; color:#9DC4D6;">import type { Config } from 'tailwindcss';
+
+export default {
+  content: ['./src/**/*.{astro,html,js,jsx,md,mdx,ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        bg: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
+        'surface-raised': 'var(--color-surface-raised)',
+        border: 'var(--color-border)',
+        primary: 'var(--color-primary)',
+        'primary-dim': 'var(--color-primary-dim)',
+        secondary: 'var(--color-secondary)',
+        deep: 'var(--color-deep)',
+        text: 'var(--color-text)',
+        'text-muted': 'var(--color-text-muted)',
+        'text-faint': 'var(--color-text-faint)',
+        gold: 'var(--color-gold)',
+        success: 'var(--color-success)',
+      },
+      borderRadius: {
+        DEFAULT: 'var(--radius)',
+        sm: 'var(--radius-sm)',
+        lg: 'var(--radius-lg)',
+      },
+      boxShadow: {
+        sm: 'var(--shadow-sm)',
+        md: 'var(--shadow-md)',
+        lg: 'var(--shadow-lg)',
+      },
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+    },
+  },
+  plugins: [],
+} satisfies Config;</pre>
+      </div>
+
+      <!-- FILE 3 -->
+      <div data-code style="background:#0A1622; border:1px solid #1A3448; border-radius:16px; overflow:hidden;">
+        <div style="display:flex; align-items:center; justify-content:space-between; padding:14px 20px; background:#112438; border-bottom:1px solid #1A3448;">
+          <span style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#DCF0F8;">src/config/site.ts · colors block</span>
+          <button onClick="{{ copyCode }}" style="font-family:Inter,sans-serif; font-size:12px; font-weight:600; color:#00C9E4; background:rgba(0,201,228,0.08); border:1px solid rgba(0,201,228,0.3); border-radius:8px; padding:6px 14px; cursor:pointer;">Copy</button>
+        </div>
+        <pre style="margin:0; padding:22px 24px; overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:12.5px; line-height:1.7; color:#9DC4D6;">colors: {
+  primary: '#00C9E4',     // bright cyan — primary accent
+  secondary: '#38BDF8',   // sky variant
+  accentLight: '#0C1B2B', // surface (replaces old #E8F4FB)
+  bg: '#07111D',          // deepest navy
+  text: '#DCF0F8',        // warm near-white, blue tint
+  gold: '#F59E0B',        // testimonial stars
+},</pre>
+      </div>
+    </section>
+
+    <!-- ░░ FOOTER ░░ -->
+    <footer style="margin-top:72px; padding-top:32px; border-top:1px solid #1A3448; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:16px;">
+      <div style="font-size:13px; color:#3E6985;">Unifisio · Kinesiología y Fisioterapia · Dark-mode token system v1</div>
+      <div style="font-size:13px; color:#3E6985; font-family:'JetBrains Mono',monospace;">No theme toggle — dark is the product.</div>
+    </footer>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      copyCode: (e) => {
+        const card = e.currentTarget.closest('[data-code]');
+        const pre = card && card.querySelector('pre');
+        if (!pre || !navigator.clipboard) return;
+        navigator.clipboard.writeText(pre.textContent);
+        const btn = e.currentTarget;
+        const orig = btn.textContent;
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => { btn.textContent = orig; }, 1300);
+      },
+    };
+  }
+}
+</script>
+</body>
+</html>
