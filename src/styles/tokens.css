@@ -44,5 +44,16 @@
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; color-scheme: light; }
+html { color-scheme: light; }
 body { font-family: 'DM Sans', sans-serif; color: var(--color-text); background-color: var(--color-bg); }
+
+/* Global 1px Grid Overlay */
+#page-grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    repeating-linear-gradient(to right, transparent, transparent calc(33.333vw - 1px), rgba(26,26,26,0.08) calc(33.333vw - 1px), rgba(26,26,26,0.08) 33.333vw),
+    repeating-linear-gradient(to bottom, transparent, transparent calc(50vh - 1px), rgba(26,26,26,0.08) calc(50vh - 1px), rgba(26,26,26,0.08) 50vh);
+}

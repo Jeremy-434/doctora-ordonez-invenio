@@ -1,5 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
+import ClinicModel from '../ui/ClinicModel';
 
 interface Props {
   headline: string;
@@ -9,22 +10,28 @@ interface Props {
 }
 
 const { headline, subheadline, trust, ctaPrimary } = Astro.props;
+
+// Helper to format headline into multiple spans (last 2 are italic)
+const lines = headline.split('\n');
+const firstLine = lines[0] || '';
+const italicLines = lines.slice(1);
 ---
 
-<section class="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden bg-bg">
-  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-8 items-center border-b border-border">
+<section class="relative min-h-[90vh] flex items-center justify-center pt-24 overflow-hidden bg-transparent">
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-16 xl:px-24 py-16 md:py-24 grid grid-cols-1 md:grid-cols-12 gap-12 items-center border-b border-border">
     
-    <div class="md:col-span-12 flex flex-col items-start justify-center md:items-center md:text-center">
-      <div class="overflow-hidden mb-8">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-[6rem] xl:text-[7rem] font-display text-text leading-[0.95] tracking-tight" data-animate="headline">
-          Fisioterapia y rehabilitación en Bogotá.<br/>
-          <span class="block italic font-light">Movimiento medido.</span>
-          <span class="block italic font-light">Recuperación con criterio.</span>
+    <div class="md:col-span-7 flex flex-col items-start justify-center">
+      <div class="overflow-hidden mb-8 w-full">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-[5rem] xl:text-[5.5rem] font-display text-text leading-[0.95] tracking-tight" data-animate="headline">
+          {firstLine}
+          {italicLines.map(line => (
+            <span class="block italic font-light">{line}</span>
+          ))}
         </h1>
       </div>
 
       <div class="overflow-hidden mb-6">
-        <p class="text-lg md:text-xl text-text-muted max-w-3xl leading-relaxed" data-animate="subheadline">
+        <p class="text-lg md:text-xl text-text-muted max-w-xl leading-relaxed" data-animate="subheadline">
           {subheadline}
         </p>
       </div>
@@ -40,11 +47,22 @@ const { headline, subheadline, trust, ctaPrimary } = Astro.props;
       </div>
     </div>
 
+    <div class="md:col-span-5 flex items-center justify-center" data-animate="3d-model">
+      <ClinicModel client:load />
+    </div>
+
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-[2] overflow-hidden" data-animate="scroll-hint">
       <div class="scroll-indicator">↓</div>
     </div>
   </div>
 </section>
+
+<style>
+  /* Base preserve-3d class used by the ClinicModel */
+  :global(.preserve-3d) {
+    transform-style: preserve-3d;
+  }
+</style>
 
 <script>
   import { gsap } from 'gsap';
@@ -58,6 +76,7 @@ const { headline, subheadline, trust, ctaPrimary } = Astro.props;
     const trust = document.querySelector('[data-animate="trust"]');
     const ctas = document.querySelector('[data-animate="ctas"]');
     const scrollHint = document.querySelector('[data-animate="scroll-hint"]');
+    const model = document.querySelector('[data-animate="3d-model"]');
 
     const tl = gsap.timeline({ delay: 0.2 });
 
@@ -81,6 +100,12 @@ const { headline, subheadline, trust, ctaPrimary } = Astro.props;
       tl.from(ctas.children, {
         y: '100%', opacity: 0, duration: 0.8, stagger: 0.15, ease: 'power3.out',
       }, 0.7);
+    }
+
+    if (model) {
+      tl.from(model, {
+        opacity: 0, x: 30, duration: 1.5, ease: 'power3.out',
+      }, 0.4);
     }
 
     if (scrollHint) {

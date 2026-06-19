@@ -2,26 +2,52 @@
 import SectionHeader from '../ui/SectionHeader.astro';
 
 interface Props {
-  title: string;
-  subtitle: string;
-  calendarUrl: string;
+  calendarId: string;
+  baseUrl: string;
 }
 
-const { title, subtitle, calendarUrl } = Astro.props;
+const { calendarId, baseUrl } = Astro.props;
+const iframeSrc = `${baseUrl}${calendarId}`;
 ---
 
-<section id="calendar" class="bg-bg py-24 md:py-32">
+<section id="calendar" class="bg-surface py-24 md:py-32 border-t border-border">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
-    <SectionHeader title={title} subtitle={subtitle} align="center" />
+    <SectionHeader title="Agenda tu cita online" align="center" />
 
-    <div class="w-full max-w-4xl mx-auto bg-surface border border-border rounded-[18px] overflow-hidden">
-      <iframe
-        src={calendarUrl}
-        style="width:100%;min-height:700px;border:none;overflow:hidden;"
-        scrolling="no"
-        title="Reservar turno con Unifisio"
-      >
-      </iframe>
+    <div class="mt-16 bg-bg border border-border-light overflow-hidden" data-animate="calendar-iframe">
+      <div class="h-[600px] md:h-[700px] relative">
+        <!-- Preloader for iframe -->
+        <div class="absolute inset-0 flex items-center justify-center bg-bg text-text-muted label-caps animate-pulse">
+          Cargando calendario...
+        </div>
+        <iframe
+          src={iframeSrc}
+          style="width: 100%; height: 100%; border: none; position: relative; z-index: 10;"
+          title="Calendario de Agendamiento"
+          loading="lazy"
+        ></iframe>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+  gsap.registerPlugin(ScrollTrigger);
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced) {
+    gsap.from('[data-animate="calendar-iframe"]', {
+      opacity: 0,
+      y: 30,
+      duration: 1,
+      ease: 'power3.out',
+      scrollTrigger: {
+        trigger: '#calendar',
+        start: 'top 85%',
+        once: true,
+      },
+    });
+  }
+</script>

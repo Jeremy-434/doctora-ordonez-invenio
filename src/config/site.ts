@@ -1,10 +1,16 @@
 export interface SiteConfig {
   brand: {
     name: string;
-    logo: string;
     tagline: string;
+    logo: string;
+    logoInverted: string;
   };
-  whatsapp: string;
+  whatsapp: {
+    number: string;
+    defaultMessage: string;
+  };
+  ghlCalendarId: string;
+  calendarBaseUrl: string;
   seo: {
     title: string;
     description: string;
@@ -102,21 +108,27 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   brand: {
     name: 'Unifisio',
-    logo: '/logo.jpg',
-    tagline: 'Movimiento medido. Recuperación con criterio.',
+    tagline: 'Fisioterapia y rehabilitación en Bogotá. Movimiento medido. Recuperación con criterio.',
+    logo: '/images/logo.svg',
+    logoInverted: '/images/logo-inverted.svg',
   },
-  whatsapp: '573000000000', // Example Colombia number
+  whatsapp: {
+    number: '+573000000000',
+    defaultMessage: 'Hola Unifisio, me gustaría agendar una cita.',
+  },
+  ghlCalendarId: 'N2oMWoHSIvzBX4r9rvfY',
+  calendarBaseUrl: 'https://www.invenioagency.com/widget/booking/',
   seo: {
-    title: 'Unifisio | Fisioterapia y rehabilitación en Bogotá',
-    description: 'Equilibrio, rendimiento y bienestar: tu cuerpo en manos expertas.',
-    ogImage: '/og-image.jpg',
-    canonicalUrl: 'https://unifisio.invenioagency.com',
+    title: 'Unifisio | Fisioterapia y Rehabilitación en Bogotá',
+    description: 'Clínica de fisioterapia deportiva y rehabilitación. Recuperación con criterio y movimiento medido.',
+    ogImage: '/images/og-image.jpg',
+    canonicalUrl: 'https://unifisio.co',
   },
   hero: {
-    headline: 'Fisioterapia y rehabilitación en Bogotá. Movimiento medido. Recuperación con criterio.',
+    headline: 'Fisioterapia y rehabilitación en Bogotá.\nMovimiento medido.\nRecuperación con criterio.',
     subheadline: 'Equilibrio, rendimiento y bienestar: tu cuerpo en manos expertas.',
     trust: '★ 5.0 · 108 reseñas en Google',
-    ctaPrimary: 'Reservar por WhatsApp',
+    ctaPrimary: 'Agendar',
   },
   trustIndicators: {
     logos: ['Universidad Europea - Real Madrid', 'Universidad Iberoamericana'],

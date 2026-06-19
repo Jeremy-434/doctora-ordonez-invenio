@@ -10,7 +10,10 @@ interface Props {
     videoUrl: string;
     reasons: string[];
   };
-  whatsapp: string;
+  whatsapp: {
+    number: string;
+    defaultMessage: string;
+  };
 }
 
 const { contact, whatsapp } = Astro.props;
@@ -96,7 +99,7 @@ const { contact, whatsapp } = Astro.props;
   </div>
 </section>
 
-<script define:vars={{ whatsappNumber: whatsapp.replace(/\D/g, '') }}>
+<script define:vars={{ whatsappNumber: whatsapp.number.replace(/\D/g, '') }}>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);

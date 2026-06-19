@@ -13,6 +13,7 @@ import TestimonialsSection from '../components/sections/TestimonialsSection.astr
 import LoyaltySection from '../components/sections/LoyaltySection.astro';
 import FAQSection from '../components/sections/FAQSection.astro';
 import ContactSection from '../components/sections/ContactSection.astro';
+import CalendarSection from '../components/sections/CalendarSection.astro';
 import FooterSection from '../components/sections/FooterSection.astro';
 ---
 
@@ -53,6 +54,8 @@ import FooterSection from '../components/sections/FooterSection.astro';
   <FAQSection faq={siteConfig.faq} />
 
   <ContactSection contact={siteConfig.contact} whatsapp={siteConfig.whatsapp} />
+
+  <CalendarSection calendarId={siteConfig.ghlCalendarId} baseUrl={siteConfig.calendarBaseUrl} />
 
   <FooterSection
     logo={siteConfig.brand.logo}
