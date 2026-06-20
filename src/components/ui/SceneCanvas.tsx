@@ -100,32 +100,32 @@ export default function SceneCanvas() {
 
     // 1. Back Wall
     const backWall = new THREE.Mesh(new THREE.BoxGeometry(w, h, th), backWallMat);
-    backWall.position.set(0, 0, -d/2 + th/2);
+    backWall.position.set(0, 0, -d / 2 + th / 2);
     backWall.receiveShadow = true;
     botiquin.add(backWall);
 
     // 2. Left and Right Walls
     const sideWallGeo = new THREE.BoxGeometry(th, h, d - th);
     const leftWall = new THREE.Mesh(sideWallGeo, frameMat);
-    leftWall.position.set(-w/2 + th/2, 0, th/2);
+    leftWall.position.set(-w / 2 + th / 2, 0, th / 2);
     leftWall.castShadow = true; leftWall.receiveShadow = true;
     const rightWall = new THREE.Mesh(sideWallGeo, frameMat);
-    rightWall.position.set(w/2 - th/2, 0, th/2);
+    rightWall.position.set(w / 2 - th / 2, 0, th / 2);
     rightWall.castShadow = true; rightWall.receiveShadow = true;
     botiquin.add(leftWall, rightWall);
 
     // 3. Top and Bottom Walls
-    const topBottomGeo = new THREE.BoxGeometry(w - th*2, th, d - th);
+    const topBottomGeo = new THREE.BoxGeometry(w - th * 2, th, d - th);
     const topWall = new THREE.Mesh(topBottomGeo, frameMat);
-    topWall.position.set(0, h/2 - th/2, th/2);
+    topWall.position.set(0, h / 2 - th / 2, th / 2);
     topWall.castShadow = true; topWall.receiveShadow = true;
     const bottomWall = new THREE.Mesh(topBottomGeo, frameMat);
-    bottomWall.position.set(0, -h/2 + th/2, th/2);
+    bottomWall.position.set(0, -h / 2 + th / 2, th / 2);
     bottomWall.castShadow = true; bottomWall.receiveShadow = true;
     botiquin.add(topWall, bottomWall);
 
     // 4. Internal Shelves (Frosted Glass)
-    const shelfGeo = new THREE.BoxGeometry(w - th*2.2, th/2, d - th*1.5);
+    const shelfGeo = new THREE.BoxGeometry(w - th * 2.2, th / 2, d - th * 1.5);
     const shelf1 = new THREE.Mesh(shelfGeo, frostedGlassMat);
     shelf1.position.set(0, 0.4, 0);
     shelf1.receiveShadow = true; shelf1.castShadow = true;
@@ -156,15 +156,15 @@ export default function SceneCanvas() {
 
     // Bottom base items (y = -h/2 + th)
     const box3 = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.2, 0.4), itemMat2);
-    box3.position.set(-0.5, -h/2 + th + 0.1, 0);
+    box3.position.set(-0.5, -h / 2 + th + 0.1, 0);
     box3.castShadow = true;
     botiquin.add(box3);
 
     // 6. Glass Door
     // Instead of a single glass plane, give it a subtle metallic rim
     const doorGroup = new THREE.Group();
-    doorGroup.position.set(0, 0, d/2 - th/2); // flush with front
-    
+    doorGroup.position.set(0, 0, d / 2 - th / 2); // flush with front
+
     const glassPlane = new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.02), glassMat);
     doorGroup.add(glassPlane);
 
@@ -178,12 +178,12 @@ export default function SceneCanvas() {
 
     // 8. Handle/Lock on door
     const handle = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.5, 0.1), handleMat);
-    handle.position.set(w/2 - 0.15, 0, 0.04);
+    handle.position.set(w / 2 - 0.15, 0, 0.04);
     handle.castShadow = true;
     doorGroup.add(handle);
 
     botiquin.add(doorGroup);
-    
+
     // Bottom shadow plane (fake soft shadow)
     const shadowGeo = new THREE.PlaneGeometry(6, 6);
     const shadowMat = new THREE.ShadowMaterial({ opacity: 0.12 });

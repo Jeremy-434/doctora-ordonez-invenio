@@ -1,5 +1,4 @@
 ---
-import Button from '../ui/Button.astro';
 import SectionHeader from '../ui/SectionHeader.astro';
 
 interface Props {
@@ -10,13 +9,9 @@ interface Props {
     videoUrl: string;
     reasons: string[];
   };
-  whatsapp: {
-    number: string;
-    defaultMessage: string;
-  };
 }
 
-const { contact, whatsapp } = Astro.props;
+const { contact } = Astro.props;
 ---
 
 <section id="visitanos" class="bg-bg py-24 md:py-32 border-t border-border">
@@ -25,13 +20,13 @@ const { contact, whatsapp } = Astro.props;
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 border-l border-t border-border-light mt-16">
       
-      {/* Map and Video Column */}
+      {/* Map Column */}
       <div class="border-r border-b border-border-light flex flex-col h-full" data-animate="contact-item">
         <div class="p-8 md:p-10 border-b border-border-light">
           <h3 class="font-display text-2xl text-text mb-2">Nuestra Ubicación</h3>
           <p class="text-text-muted">{contact.location}</p>
         </div>
-        <div class="aspect-video w-full bg-surface relative">
+        <div class="aspect-video w-full bg-surface relative flex-grow min-h-[300px]">
           <iframe 
             src={contact.mapUrl} 
             width="100%" 
@@ -43,63 +38,32 @@ const { contact, whatsapp } = Astro.props;
             class="absolute inset-0 grayscale contrast-125 opacity-80"
           ></iframe>
         </div>
-        <div class="p-8 md:p-10 border-t border-border-light flex-grow">
-          <div class="label-caps text-text-muted mb-4">¿Cómo llegar?</div>
-          <div class="aspect-video w-full bg-surface border border-border flex items-center justify-center relative overflow-hidden">
-             <!-- Placeholder for video -->
-            <div class="absolute inset-0 flex items-center justify-center">
-              <div class="w-12 h-12 rounded-full bg-text flex items-center justify-center pl-1 cursor-pointer">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8 5V19L19 12L8 5Z" fill="var(--color-bg)"/>
-                </svg>
-              </div>
-            </div>
-            <p class="absolute bottom-4 text-xs text-text-faint font-display">Ver video guía</p>
-          </div>
-        </div>
       </div>
 
-      {/* Form Column */}
-      <div class="bg-surface border-r border-b border-border-light p-8 md:p-12 flex flex-col h-full" data-animate="contact-item">
-        <div class="mb-10">
-          <h3 class="font-display text-3xl text-text mb-4">Agendá tu cita</h3>
-          <p class="text-text-muted">Déjanos tus datos y te contactaremos de inmediato por WhatsApp.</p>
+      {/* Video Column */}
+      <div class="bg-surface border-r border-b border-border-light flex flex-col h-full" data-animate="contact-item">
+        <div class="p-8 md:p-10 border-b border-border-light">
+          <h3 class="font-display text-2xl text-text mb-2">¿Cómo llegar?</h3>
+          <p class="text-text-muted">Mira nuestro video guía para encontrar la entrada fácilmente.</p>
         </div>
-
-        <form id="whatsapp-form" class="flex flex-col gap-6 flex-grow">
-          <div class="flex flex-col gap-2">
-            <label for="name" class="label-caps text-text">Nombre completo</label>
-            <input type="text" id="name" required class="bg-transparent border-b border-border py-3 text-text focus:outline-none focus:border-text transition-colors placeholder:text-text-faint" placeholder="Ej. Juan Pérez" />
+        <div class="w-full flex-grow relative overflow-hidden flex items-center justify-center min-h-[300px]">
+           <!-- Placeholder for video -->
+          <div class="absolute inset-0 flex items-center justify-center bg-bg">
+            <div class="w-16 h-16 rounded-full bg-text flex items-center justify-center pl-1 cursor-pointer hover:scale-110 transition-transform">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5V19L19 12L8 5Z" fill="var(--color-bg)"/>
+              </svg>
+            </div>
           </div>
-
-          <div class="flex flex-col gap-2">
-            <label for="phone" class="label-caps text-text">Teléfono</label>
-            <input type="tel" id="phone" required class="bg-transparent border-b border-border py-3 text-text focus:outline-none focus:border-text transition-colors placeholder:text-text-faint" placeholder="+57 300 000 0000" />
-          </div>
-
-          <div class="flex flex-col gap-2 mb-8">
-            <label for="reason" class="label-caps text-text">Motivo de consulta</label>
-            <select id="reason" required class="bg-surface border-b border-border py-3 text-text focus:outline-none focus:border-text transition-colors appearance-none cursor-pointer">
-              <option value="" disabled selected class="text-text-faint">Selecciona un motivo...</option>
-              {contact.reasons.map(reason => (
-                <option value={reason}>{reason}</option>
-              ))}
-            </select>
-          </div>
-
-          <div class="mt-auto pt-8">
-            <button type="submit" class="w-full inline-block text-center rounded-pill font-medium uppercase tracking-widest transition-colors duration-300 bg-text text-bg hover:bg-bg hover:text-text border border-text px-10 py-5 text-sm">
-              Enviar por WhatsApp
-            </button>
-          </div>
-        </form>
+          <p class="absolute bottom-6 text-sm text-text-faint font-display">Ver video guía</p>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
-<script define:vars={{ whatsappNumber: whatsapp.number.replace(/\D/g, '') }}>
+<script>
   import { gsap } from 'gsap';
   import { ScrollTrigger } from 'gsap/ScrollTrigger';
   gsap.registerPlugin(ScrollTrigger);
@@ -119,21 +83,4 @@ const { contact, whatsapp } = Astro.props;
       },
     });
   }
-
-  // Handle WhatsApp form submission
-  document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('whatsapp-form') as HTMLFormElement;
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const name = (document.getElementById('name') as HTMLInputElement).value;
-        const reason = (document.getElementById('reason') as HTMLSelectElement).value;
-        
-        const message = `Hola Unifisio, mi nombre es ${name}. Me gustaría consultar por: ${reason}.`;
-        const encodedMessage = encodeURIComponent(message);
-        
-        window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
-      });
-    }
-  });
 </script>
