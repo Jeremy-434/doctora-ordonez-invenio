@@ -137,7 +137,7 @@ export default function Preloader() {
             fontWeight: 600,
           }}
         >
-          Dra. Liliana Castillo
+          Dra. Ileynne Ordoñez
         </div>
 
         {/* Name */}
@@ -152,7 +152,7 @@ export default function Preloader() {
             fontWeight: 400,
           }}
         >
-          Psicóloga Clínica · Bogotá
+          Psicóloga Clínica Cristiana · Bogotá
         </div>
       </div>
     </div>

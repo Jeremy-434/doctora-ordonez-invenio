@@ -45,18 +45,20 @@ async function verify() {
 
     // Get all text content to verify names
     const pageText = await page.content();
-    const hasLiliana = pageText.includes('Liliana');
-    const hasCastillo = pageText.includes('Castillo');
-    const hasFernandoBonilla = pageText.includes('Fernando Bonilla') && pageText.includes('Fernando Alexander');
-    const hasDraLiliana = pageText.includes('Dra. Liliana');
+    const hasIleynne = pageText.includes('Ileynne');
+    const hasOrdonez = pageText.includes('Ordoñez');
+    const hasDraIleynne = pageText.includes('Dra. Ileynne');
+    const hasNoLiliana = !pageText.includes('Liliana');
+    const hasNoCastillo = !pageText.includes('Castillo');
 
     console.log('\n✅ Content verification:');
-    console.log('  ✓ Contains "Liliana":', hasLiliana);
-    console.log('  ✓ Contains "Castillo":', hasCastillo);
-    console.log('  ✓ Contains "Dra. Liliana":', hasDraLiliana);
-    console.log('  ✗ No old "Fernando Bonilla" name:', !hasFernandoBonilla);
+    console.log('  ✓ Contains "Ileynne":', hasIleynne);
+    console.log('  ✓ Contains "Ordoñez":', hasOrdonez);
+    console.log('  ✓ Contains "Dra. Ileynne":', hasDraIleynne);
+    console.log('  ✓ No old "Liliana" name:', hasNoLiliana);
+    console.log('  ✓ No old "Castillo" name:', hasNoCastillo);
 
-    if (hasDraLiliana && hasCastillo && !hasFernandoBonilla) {
+    if (hasDraIleynne && hasIleynne && hasOrdonez && hasNoLiliana && hasNoCastillo) {
       console.log('\n✅ VERIFICATION PASSED: All content updated successfully');
     } else {
       console.log('\n❌ VERIFICATION FAILED: Some content may not be updated');
