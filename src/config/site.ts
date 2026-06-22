@@ -122,7 +122,7 @@ export const siteConfig: SiteConfig = {
   seo: {
     title: 'Dra. Ileynne Stephany Ordoñez Olaya | Psicóloga Clínica en Bogotá',
     description: 'Psicóloga clínica cristiana con formación en neuropsicología y terapia de pareja y familia. Atención en línea para pacientes en Colombia y el exterior.',
-    ogImage: 'https://via.placeholder.com/1200x630?text=Dra.+Ileynne+Stephany+Ordoñez+Olaya',
+    ogImage: '/og-image.jpeg',
     canonicalUrl: 'https://doctoraeileynne.co',
   },
   hero: {
@@ -209,17 +209,17 @@ export const siteConfig: SiteConfig = {
       {
         title: 'Videoconsulta en Línea',
         description: 'Sesiones 100% en línea desde cualquier ciudad de Colombia o el exterior. Misma calidad clínica, ambiente cálido y confidencial.',
-        image: 'https://via.placeholder.com/400x300?text=Videoconsulta+en+Linea',
+        image: '/infra-1.jpeg',
       },
       {
         title: 'Enfoque Cristiano-Clínico',
         description: 'Integración de Psicología Cristiana con TCC y terapias basadas en evidencia. Atención que reconoce la dimensión emocional y espiritual.',
-        image: 'https://via.placeholder.com/400x300?text=Enfoque+Cristiano',
+        image: '/infra-2.jpeg',
       },
       {
         title: 'Especialización en Neuropsicología',
         description: 'Evaluación neuropsicológica en adolescentes y adultos. Formación integral para entender cómo mente, emociones y fe se conectan.',
-        image: 'https://via.placeholder.com/400x300?text=Neuropsicologia',
+        image: '/infra-3.jpeg',
       },
     ],
   },
@@ -227,7 +227,7 @@ export const siteConfig: SiteConfig = {
     title: 'Psicología con propósito',
     subtitle: 'Contenido psicoeducativo desde una perspectiva cristiana y clínica. Conocimiento para restaurar el alma y renovar la mente.',
     youtubeLink: 'https://youtube.com',
-    videoUrl: '',
+    videoUrl: '/video-intro.mp4',
   },
   team: {
     title: 'Quién te acompaña',
@@ -236,7 +236,7 @@ export const siteConfig: SiteConfig = {
         name: 'Dra. Ileynne Stephany Ordoñez Olaya',
         role: 'Psicóloga Clínica Cristiana | Neuropsicología & Terapia de Pareja y Familia',
         description: 'Soy psicóloga clínica cristiana con formación en neuropsicología y en terapia de pareja y familia. Mi práctica profesional está fundamentada en la Psicología Cristiana y en el enfoque cognitivo–conductual, integrando herramientas de la psicología basada en la evidencia con principios y valores cristocéntricos. De esta manera, brindo una atención que reconoce y fortalece tanto la dimensión emocional como espiritual del ser humano. Acompaño procesos con amor, empatía y propósito en: ansiedad, depresión y sanidad emocional; duelos, crisis de fe, rupturas y propósito de vida; conflictos de pareja, comunicación y restauración matrimonial; orientación familiar y fortalecimiento de vínculos; evaluación neuropsicológica en adolescentes y adultos. Núm. Colegiado: 116956.',
-        image: 'https://via.placeholder.com/400x500?text=Dra.+Ileynne+Ordoñez',
+        image: '/hero.jpg',
       },
     ],
   },
