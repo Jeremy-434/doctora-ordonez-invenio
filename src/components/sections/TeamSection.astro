@@ -1,5 +1,6 @@
 ---
 import SectionHeader from '../ui/SectionHeader.astro';
+import ExpandableText from '../ui/ExpandableText';
 
 interface Props {
   team: {
@@ -35,7 +36,7 @@ const { team } = Astro.props;
             <div class="w-full sm:w-2/3 p-8 md:p-10 flex flex-col justify-center">
               <h3 class="font-display text-2xl text-text mb-2">{member.name}</h3>
               <p class="label-caps text-text-muted mb-6">{member.role}</p>
-              <p class="text-text-muted leading-relaxed">{member.description}</p>
+              <ExpandableText client:only="react" text={member.description} maxLines={3} />
             </div>
           </div>
         ))

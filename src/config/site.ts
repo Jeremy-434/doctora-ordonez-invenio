@@ -108,7 +108,8 @@ export interface SiteConfig {
 
 export const siteConfig: SiteConfig = {
   brand: {
-    name: 'Dra. Ileynne Stephany Ordoñez Olaya',
+    name: 'Dra. Ileynne Ordoñez',
+    // name: 'Dra. Ileynne Stephany Ordoñez Olaya',
     tagline: 'Psicología clínica cristiana con enfoque integral. Neuropsicología, terapia de pareja y familia.',
     logo: '/images/logo.svg',
     logoInverted: '/images/logo-inverted.svg',
