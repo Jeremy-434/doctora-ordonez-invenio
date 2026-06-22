@@ -6,10 +6,12 @@ interface Props {
     title: string;
     subtitle: string;
     youtubeLink: string;
+    videoUrl: string;
   };
 }
 
 const { educational } = Astro.props;
+const { title, subtitle, youtubeLink, videoUrl } = educational;
 ---
 
 <section class="border-y border-border bg-surface py-24 md:py-32">
@@ -19,22 +21,23 @@ const { educational } = Astro.props;
       <div data-animate="edu-text">
         <div class="label-caps text-text-muted mb-8">Contenido de Valor</div>
         <h2 class="text-4xl md:text-5xl lg:text-6xl font-display text-text leading-tight mb-8">
-          {educational.title}
+          {title}
         </h2>
         <p class="text-lg text-text-muted mb-12">
-          {educational.subtitle}
+          {subtitle}
         </p>
-        <Button variant="primary" text="Ver canal de YouTube" onClick={`window.open('${educational.youtubeLink}', '_blank')`} />
+        <Button variant="primary" text="Ver canal de YouTube" onClick={`window.open('${youtubeLink}', '_blank')`} />
       </div>
 
-      <div class="aspect-video bg-bg border border-border flex items-center justify-center relative overflow-hidden" data-animate="edu-video">
-        <div class="absolute inset-0 flex items-center justify-center">
-          <div class="w-16 h-16 rounded-full bg-text flex items-center justify-center pl-1 cursor-pointer hover:scale-110 transition-transform duration-300">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M8 5V19L19 12L8 5Z" fill="var(--color-bg)"/>
-            </svg>
-          </div>
-        </div>
+      <div class="aspect-video bg-bg border border-border relative overflow-hidden" data-animate="edu-video">
+        <video
+          src={videoUrl}
+          poster="/infra-1.jpeg"
+          controls
+          preload="none"
+          class="w-full h-full object-cover"
+          aria-label="Video psicoeducativo de Fernando Bonilla"
+        ></video>
       </div>
 
     </div>

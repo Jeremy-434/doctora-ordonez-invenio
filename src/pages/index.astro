@@ -22,7 +22,7 @@ import FooterSection from '../components/sections/FooterSection.astro';
   description={siteConfig.seo.description}
   ogImage={siteConfig.seo.ogImage}
 >
-  <HeaderSection logo={siteConfig.brand.logo} navLinks={siteConfig.footer.navLinks} />
+  <HeaderSection name={siteConfig.brand.name} navLinks={siteConfig.footer.navLinks} />
 
   <HeroSection
     headline={siteConfig.hero.headline}
@@ -53,12 +53,12 @@ import FooterSection from '../components/sections/FooterSection.astro';
 
   <FAQSection faq={siteConfig.faq} />
 
-  <ContactSection contact={siteConfig.contact} whatsapp={siteConfig.whatsapp} />
+  <ContactSection contact={siteConfig.contact} />
 
   <CalendarSection calendarId={siteConfig.ghlCalendarId} baseUrl={siteConfig.calendarBaseUrl} />
 
   <FooterSection
-    logo={siteConfig.brand.logo}
+    name={siteConfig.brand.name}
     tagline={siteConfig.footer.tagline}
     navLinks={siteConfig.footer.navLinks}
     copyright={siteConfig.footer.copyright}

@@ -25,8 +25,12 @@ const { team } = Astro.props;
         team.members.map((member) => (
           <div class="border-r border-b border-border-light flex flex-col sm:flex-row group" data-animate="team-card">
             <div class="w-full sm:w-1/3 aspect-square sm:aspect-auto bg-surface relative overflow-hidden border-b sm:border-b-0 sm:border-r border-border-light">
-              <div class="absolute inset-0 bg-text-faint/5 transition-transform duration-700 group-hover:scale-105"></div>
-              <div class="absolute inset-0 flex items-center justify-center text-text-faint label-caps opacity-50">Photo</div>
+              <img
+                src={member.image}
+                alt={member.name}
+                class="absolute inset-0 w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
             </div>
             <div class="w-full sm:w-2/3 p-8 md:p-10 flex flex-col justify-center">
               <h3 class="font-display text-2xl text-text mb-2">{member.name}</h3>

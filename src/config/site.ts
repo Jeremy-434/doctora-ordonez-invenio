@@ -58,6 +58,7 @@ export interface SiteConfig {
     title: string;
     subtitle: string;
     youtubeLink: string;
+    videoUrl: string;
   };
   team: {
     title: string;
@@ -208,17 +209,17 @@ export const siteConfig: SiteConfig = {
       {
         title: 'Consulta Presencial',
         description: 'Atención en consultorio privado. Carrera 118 #86-20, Bogotá. Ambiente cálido, confidencial y sin juicios.',
-        image: '/infra-1.jpg',
+        image: '/infra-1.jpeg',
       },
       {
         title: 'Videoconsulta',
         description: 'Sesiones de psicoterapia en línea desde cualquier lugar. Misma calidad clínica, sin desplazamiento.',
-        image: '/infra-2.jpg',
+        image: '/infra-2.jpeg',
       },
       {
         title: 'Enfoque Basado en Evidencia',
         description: 'Terapias de tercera generación, TCC y Mindfulness. Intervención clínica rigurosa y adaptada a cada persona.',
-        image: '/infra-3.jpg',
+        image: '/infra-3.jpeg',
       },
     ],
   },
@@ -226,6 +227,7 @@ export const siteConfig: SiteConfig = {
     title: 'Psicología sin misterios',
     subtitle: 'Contenido psicoeducativo para entender mejor tu salud mental y emocional. Conocimiento accesible y basado en evidencia.',
     youtubeLink: 'https://youtube.com',
+    videoUrl: '/video-intro.mp4',
   },
   team: {
     title: 'Quién te acompaña',
@@ -234,7 +236,7 @@ export const siteConfig: SiteConfig = {
         name: 'Fernando Alexander Bonilla Sandoval',
         role: 'Psicólogo Clínico | Máster en Psicoterapia Contextual',
         description: 'Profesional en Psicología, Especialista en Psicología Clínica y Máster en Psicoterapia desde un enfoque contextualista. Más de 19 años acompañando procesos de cambio, crecimiento y bienestar emocional en personas de todas las edades.',
-        image: '/team-1.jpg',
+        image: '/hero.jpg',
       },
     ],
   },

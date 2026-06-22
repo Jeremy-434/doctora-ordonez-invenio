@@ -23,9 +23,9 @@ export default function SmoothScroll() {
 
           // Handle anchor links
           document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', (e) => {
               e.preventDefault();
-              const targetId = this.getAttribute('href');
+              const targetId = (anchor as HTMLAnchorElement).getAttribute('href');
               if (targetId && targetId !== '#') {
                 const targetElement = document.querySelector(targetId) as HTMLElement;
                 if (targetElement) {

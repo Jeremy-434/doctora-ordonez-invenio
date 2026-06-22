@@ -1,19 +1,19 @@
 ---
 interface Props {
-  logo: string;
+  name: string;
   tagline: string;
   navLinks: string[];
   copyright: string;
 }
 
-const { logo, tagline, navLinks, copyright } = Astro.props;
+const { name, tagline, navLinks, copyright } = Astro.props;
 ---
 
 <footer class="bg-inverted-bg text-inverted-text py-16 md:py-24 border-t border-border">
   <div class="px-4 md:px-8 lg:px-16 xl:px-24 max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
       <div>
-        <img src={logo} alt="Unifisio" class="h-8 brightness-0 invert mb-6" />
+        <span class="block font-display text-inverted-text text-xl leading-none tracking-tight mb-6">{name}</span>
         <p class="text-inverted-muted text-sm leading-relaxed">{tagline}</p>
       </div>
 

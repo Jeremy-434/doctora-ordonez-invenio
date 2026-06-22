@@ -3,10 +3,8 @@ import { siteConfig } from '../../config/site';
 import '../../styles/tokens.css';
 import '../../styles/animations.css';
 import CustomCursor from '../ui/CustomCursor';
-import Preloader from '../ui/Preloader';
 import ScrollProgress from '../ui/ScrollProgress';
 import SmoothScroll from '../ui/SmoothScroll';
-import SceneCanvas from '../ui/SceneCanvas';
 
 interface Props {
   title?: string;
@@ -14,17 +12,24 @@ interface Props {
   ogImage?: string;
 }
 
-const { title = siteConfig.seo.title, description = siteConfig.seo.description, ogImage = siteConfig.seo.ogImage } = Astro.props;
+const {
+  title = siteConfig.seo.title,
+  description = siteConfig.seo.description,
+  ogImage = siteConfig.seo.ogImage,
+} = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es-AR" class="light">
+<html lang="es-CO" class="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
@@ -33,21 +38,75 @@ const { title = siteConfig.seo.title, description = siteConfig.seo.description, 
     <link rel="canonical" href={siteConfig.seo.canonicalUrl} />
   </head>
   <body>
-    <!-- Persistent Grid overlay -->
+    <!--
+      Static preloader — present in the first HTML byte so there is never
+      a flash of page content. GSAP (loaded via <script> below) animates
+      the exit once the bundle is ready.
+    -->
+    <div
+      id="preloader-overlay"
+      aria-hidden="true"
+      style="position:fixed;inset:0;z-index:99999;overflow:hidden;pointer-events:none;"
+    >
+      <!-- Photo fill -->
+      <div
+        id="preloader-photo"
+        style="position:absolute;inset:0;background-image:url(/infra-1.jpeg);background-size:cover;background-position:center top;"
+      ></div>
+      <!-- Gradient scrim -->
+      <div
+        style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(245,240,232,0.06) 0%,rgba(15,15,15,0.52) 50%,rgba(15,15,15,0.90) 100%);"
+      ></div>
+      <!-- Bottom lockup -->
+      <div
+        style="position:absolute;bottom:7vh;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:0.75rem;"
+      >
+        <div
+          id="preloader-line"
+          style="width:2.5rem;height:1px;background:rgba(245,240,232,0.3);margin-bottom:0.2rem;"
+        ></div>
+        <div
+          id="preloader-name"
+          style="font-family:'Playfair Display',Georgia,serif;font-size:clamp(0.65rem,1.8vw,0.85rem);color:rgba(245,240,232,0.5);letter-spacing:0.24em;text-transform:uppercase;font-weight:400;"
+        >
+          Fernando Bonilla
+        </div>
+      </div>
+    </div>
+
     <div id="page-grid"></div>
 
-    <!-- Persistent 3D Canvas Background -->
-    <SceneCanvas client:only="react" />
-
-    <Preloader client:only="react" />
     <main class="relative z-10">
       <slot />
     </main>
+
     <ScrollProgress client:only="react" />
     <SmoothScroll client:only="react" />
     <CustomCursor client:only="react" />
   </body>
 </html>
+
+<script>
+  import { gsap } from 'gsap';
+
+  const overlay = document.getElementById('preloader-overlay');
+  const photo   = document.getElementById('preloader-photo');
+  const line    = document.getElementById('preloader-line');
+  const name    = document.getElementById('preloader-name');
+
+  if (overlay) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      overlay.style.display = 'none';
+    } else {
+      gsap.timeline({ onComplete: () => { overlay.style.display = 'none'; } })
+        .from(photo, { scale: 1.06, opacity: 0, duration: 1.5, ease: 'power2.out' }, 0)
+        .from(line,  { scaleX: 0, transformOrigin: 'left center', duration: 0.7, ease: 'power2.out' }, 0.6)
+        .from(name,  { opacity: 0, y: 10, duration: 0.7, ease: 'power2.out' }, 0.85)
+        .to(overlay, { y: '-100%', duration: 1.1, delay: 1.0, ease: 'power3.inOut' });
+    }
+  }
+</script>
+
 <style is:global>
-  /* Removed scroll-behavior: smooth to let Lenis handle it */
+  /* scroll-behavior: smooth intentionally omitted — Lenis handles smooth scroll */
 </style>

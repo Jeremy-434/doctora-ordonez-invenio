@@ -24,9 +24,12 @@ const { infrastructure } = Astro.props;
         infrastructure.items.map((item) => (
           <div class="border-r border-b border-border-light group overflow-hidden" data-animate="infra-card">
             <div class="aspect-video bg-surface overflow-hidden relative border-b border-border-light">
-              <!-- Placeholder for actual image -->
-              <div class="absolute inset-0 bg-text-faint/10 transition-transform duration-700 group-hover:scale-105"></div>
-              <div class="absolute inset-0 flex items-center justify-center text-text-faint label-caps opacity-50">Image: {item.title}</div>
+              <img
+                src={item.image}
+                alt={item.title}
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
             </div>
             <div class="p-8">
               <h3 class="font-display text-xl text-text mb-2">{item.title}</h3>
