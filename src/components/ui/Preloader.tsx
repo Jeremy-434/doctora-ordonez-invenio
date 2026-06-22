@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 export default function Preloader() {
   const overlayRef = useRef<HTMLDivElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLImageElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
   const nameRef = useRef<HTMLDivElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
 
@@ -81,7 +81,7 @@ export default function Preloader() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/hero.jpg)',
+          backgroundImage: 'linear-gradient(135deg, rgba(200,180,150,0.9), rgba(180,150,120,0.9))',
           backgroundSize: 'cover',
           backgroundPosition: 'center 20%',
         }}
@@ -127,16 +127,18 @@ export default function Preloader() {
         />
 
         {/* Logo */}
-        <img
+        <div
           ref={logoRef}
-          src="/logo.jpg"
-          alt="Dr. Fernando Bonilla"
           style={{
-            height: '2.25rem',
-            objectFit: 'contain',
-            filter: 'brightness(0) invert(1)',
+            fontFamily: "'Playfair Display', Georgia, serif",
+            fontSize: 'clamp(0.95rem, 2.5vw, 1.3rem)',
+            color: 'rgba(245,240,232,0.92)',
+            letterSpacing: '0.06em',
+            fontWeight: 600,
           }}
-        />
+        >
+          Dra. Liliana Castillo
+        </div>
 
         {/* Name */}
         <div
@@ -150,7 +152,7 @@ export default function Preloader() {
             fontWeight: 400,
           }}
         >
-          Fernando Bonilla
+          Psicóloga Clínica · Bogotá
         </div>
       </div>
     </div>
