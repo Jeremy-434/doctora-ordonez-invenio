@@ -60,7 +60,7 @@ export default function CustomCursor() {
           width: '4px',
           height: '4px',
           borderRadius: '50%',
-          backgroundColor: '#1A1A1A',
+          backgroundColor: '#FFFFFF',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9999,
@@ -76,15 +76,15 @@ export default function CustomCursor() {
           width: '24px',
           height: '24px',
           borderRadius: '50%',
-          border: '1px solid #1A1A1A',
+          border: '1px solid #FFFFFF',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9998,
           mixBlendMode: 'difference',
         }}
       >
-        <div style={{ position: 'absolute', top: '50%', left: '-4px', width: '32px', height: '1px', background: '#1A1A1A' }} />
-        <div style={{ position: 'absolute', left: '50%', top: '-4px', height: '32px', width: '1px', background: '#1A1A1A' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '-4px', width: '32px', height: '1px', background: '#FFFFFF' }} />
+        <div style={{ position: 'absolute', left: '50%', top: '-4px', height: '32px', width: '1px', background: '#FFFFFF' }} />
       </div>
     </>
   );

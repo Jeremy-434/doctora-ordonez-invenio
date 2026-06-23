@@ -31,10 +31,13 @@ const { title, subtitle, youtubeLink, videoUrl } = educational;
 
       <div class="aspect-video bg-bg border border-border relative overflow-hidden" data-animate="edu-video">
         <video
+          id="edu-video"
           src={videoUrl}
           poster="https://via.placeholder.com/800x450?text=Video+Psicoeducativo"
           controls
-          preload="none"
+          muted
+          playsinline
+          preload="metadata"
           class="w-full h-full object-cover"
           aria-label="Video psicoeducativo de Ileynne Stephany Ordoñez Olaya"
         ></video>
@@ -59,5 +62,15 @@ const { title, subtitle, youtubeLink, videoUrl } = educational;
       x: 30, opacity: 0, duration: 1, ease: 'power2.out', delay: 0.2,
       scrollTrigger: { trigger: '[data-animate="edu-video"]', start: 'top 85%', once: true },
     });
+  }
+
+  // Auto-play video on viewport
+  const video = document.querySelector('#edu-video') as HTMLVideoElement;
+  if (video) {
+    const observer = new IntersectionObserver(
+      ([entry]) => { entry.isIntersecting ? video.play() : video.pause(); },
+      { threshold: 0.3 }
+    );
+    observer.observe(video);
   }
 </script>

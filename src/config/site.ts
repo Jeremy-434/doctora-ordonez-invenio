@@ -118,7 +118,7 @@ export const siteConfig: SiteConfig = {
     number: '+573183780170',
     defaultMessage: 'Hola Dra. Ileynne, me gustaría agendar una consulta psicológica.',
   },
-  ghlCalendarId: 'lRPFwJAjpYNAAI66BHlY',
+  ghlCalendarId: 'tpXLKhGrR4ruEcheqPwv',
   calendarBaseUrl: 'https://www.invenioagency.com/widget/booking/',
   seo: {
     title: 'Dra. Ileynne Stephany Ordoñez Olaya | Psicóloga Clínica en Bogotá',
@@ -339,7 +339,7 @@ export const siteConfig: SiteConfig = {
   contact: {
     title: 'Agenda tu consulta',
     location: 'CARRERA 55 No 152B-68, Suba, Bogotá 101111',
-    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127253.25362947477!2d-74.19502985392074!3d4.646549221191068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a2fb60a12e5%3A0xc3191f63b4f9f60!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1sen!2sus!4v1717281352467!5m2!1sen!2sus',
+    mapUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3976.5819346543826!2d-74.07844932346816!3d4.749116496556217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f8f5e5e5e5e5d%3A0x5e5e5e5e5e5e5e5e!2sCarrera%2055%20%23152B-68%2C%20Suba%2C%20Bogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sus!4v1718000000000',
     videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
     reasons: ['Ansiedad o depresión', 'Terapia de pareja', 'Psicología infantil', 'Neuropsicología', 'Sanidad emocional', 'Crisis de fe', 'Coaching familiar', 'Otro'],
   },
